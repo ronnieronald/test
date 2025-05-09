@@ -634,12 +634,19 @@ setInterval(() => {
 // Intentar reproducción automática al cargar
 window.addEventListener("load", () => {
   const scheduled = getScheduledStation();
+  const programTitle = document.getElementById("programTitle");
+
+  // Crear el mensaje
   const userMessage = document.createElement("div");
   userMessage.id = "userMessage";
   userMessage.style.color = "red";
   userMessage.style.textAlign = "center";
   userMessage.style.marginTop = "10px";
-  document.body.appendChild(userMessage);
+  userMessage.style.fontSize = "1rem";
+  userMessage.textContent = "La reproducción automática fue bloqueada. Haz clic en el botón de Play/Pause para iniciar.";
+
+  // Insertar el mensaje debajo del título del programa
+  programTitle.insertAdjacentElement("afterend", userMessage);
 
   if (scheduled) {
     radioPlayer.src = scheduled.station.url;
@@ -648,9 +655,9 @@ window.addEventListener("load", () => {
       playPauseIcon.src =
         "https://img.icons8.com/ios-filled/50/000000/pause.png";
       isPlaying = true;
+      userMessage.remove(); // Eliminar el mensaje si la reproducción automática funciona
     }).catch(() => {
-      // Mostrar mensaje al usuario si la reproducción automática es bloqueada
-      userMessage.textContent = "La reproducción automática fue bloqueada. Haz clic en el botón de Play/Pause para iniciar.";
+      console.log("Reproducción automática bloqueada.");
     });
   } else {
     updateProgramTitle(null, null);
