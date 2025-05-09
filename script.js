@@ -479,6 +479,12 @@ function checkSchedule() {
 
 // Controlar play/pausa con el botón personalizado
 playPauseButton.addEventListener("click", () => {
+  // Eliminar el mensaje si existe
+  const userMessage = document.getElementById("userMessage");
+  if (userMessage) {
+    userMessage.remove();
+  }
+
   if (radioPlayer.paused) {
     const scheduled = getScheduledStation();
     if (scheduled && !radioPlayer.src) {
