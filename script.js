@@ -272,7 +272,7 @@ const schedule = [
       url: "https://jml-stream.com:8010/app.aac",
       logo: "https://play-lh.googleusercontent.com/oMpXPAw08KNsoGYzJoLp6_5Ihpr1ZWnBZR8A0WfPKmaOgspDS4BNvm2XfUy5oBLk7Xk=w240-h480-rw"
     },
-    programName: "",
+    programName: "programa 100",
     days: [6],
   },
   {
@@ -283,7 +283,7 @@ const schedule = [
       url: "https://radio.transmite.pe/9318/stream",
        logo: "https://radiovidacusco.com/live.player/radiovidaenvivo/widgets/player/single/images/LOGORADIO.jpg"
     },
-    programName: "",
+    programName: "Undefined",
     days: [6],
   },
   {
@@ -440,12 +440,9 @@ function timeToSeconds(time) {
 }
 
 // Actualizar el título y hora de finalización
-function updateProgramTitle(stationName, endTime, programName = "", showProgram = false) {
+function updateProgramTitle(stationName, endTime) {
   if (stationName && endTime !== null) {
-    // Si showProgram es true y hay nombre de programa, lo muestra debajo
-    programTitle.innerHTML = showProgram && programName
-      ? `${stationName}<br><span style="font-size:0.9em;color:#666">${programName}</span>`
-      : stationName;
+    programTitle.textContent = stationName;
   } else if (stationName) {
     programTitle.textContent = stationName;
   } else {
@@ -509,6 +506,8 @@ function checkSchedule() {
         scheduled.programName,
         true // Mostrar nombre del programa
       );
+      // Ejemplo en modo automático:
+      updateMediaSession(scheduled.station, scheduled.programName);
     } else {
       radioPlayer.pause();
       radioPlayer.src = "";
@@ -803,15 +802,27 @@ window.addEventListener("online", () => {
   }
 });
 
-function updateMediaSession(station) {
+function updateMediaSession(station, programName = "") {
   if ('mediaSession' in navigator && station) {
+    const pageTitle = document.title || "Radio Online";
     navigator.mediaSession.metadata = new window.MediaMetadata({
       title: station.name,
-      artist: '', // Puedes poner el nombre del programa si lo tienes
-      album: 'Radio Online',
+      artist: programName && programName.trim() !== "" ? programName : "",
+      album: pageTitle,
       artwork: [
         { src: station.logo || 'https://img.icons8.com/ios-filled/100/000000/radio.png', sizes: '512x512', type: 'image/png' }
       ]
+    });
+    // Botón pausa
+    navigator.mediaSession.setActionHandler('pause', () => {
+      radioPlayer.pause();
+    });
+    // Botón detener
+    navigator.mediaSession.setActionHandler('stop', () => {
+      radioPlayer.pause();
+      radioPlayer.currentTime = 0;
+      playPauseIcon.src = "https://img.icons8.com/ios-filled/50/000000/play.png";
+      isPlaying = false;
     });
   }
 }
