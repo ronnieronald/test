@@ -6,6 +6,7 @@ const schedule = [
     station: {
       name: "Radio La Unción",
       url: "https://jml-stream.com:8010/app.aac",
+      logo: "https://play-lh.googleusercontent.com/oMpXPAw08KNsoGYzJoLp6_5Ihpr1ZWnBZR8A0WfPKmaOgspDS4BNvm2XfUy5oBLk7Xk=w240-h480-rw"
     },
     programName: "",
     days: [1, 2, 3, 4, 5, 6, 0],
@@ -16,6 +17,7 @@ const schedule = [
     station: {
       name: "Radio Vida",
       url: "https://radio.transmite.pe/9318/stream",
+       logo: "https://radiovidacusco.com/live.player/radiovidaenvivo/widgets/player/single/images/LOGORADIO.jpg"
     },
     programName: "A Solas Con Dios",
     days: [1, 2, 3, 4, 5, 6, 0],
@@ -23,9 +25,10 @@ const schedule = [
   {
     startTime: "05:56:00",
     endTime: "06:00:00",
-    station: {
+    station:  {
       name: "Radio La Unción",
       url: "https://jml-stream.com:8010/app.aac",
+      logo: "https://play-lh.googleusercontent.com/oMpXPAw08KNsoGYzJoLp6_5Ihpr1ZWnBZR8A0WfPKmaOgspDS4BNvm2XfUy5oBLk7Xk=w240-h480-rw"
     },
     programName: "",
     days: [1, 2, 3, 4, 5, 6, 0],
@@ -36,6 +39,7 @@ const schedule = [
     station: {
       name: "Radio Vida",
       url: "https://radio.transmite.pe/9318/stream",
+       logo: "https://radiovidacusco.com/live.player/radiovidaenvivo/widgets/player/single/images/LOGORADIO.jpg"
     },
     programName: "",
     days: [1, 2, 3, 4, 5, 6, 0],
@@ -43,9 +47,10 @@ const schedule = [
   {
     startTime: "06:56:00",
     endTime: "07:00:00",
-    station: {
+    station:  {
       name: "Radio La Unción",
       url: "https://jml-stream.com:8010/app.aac",
+      logo: "https://play-lh.googleusercontent.com/oMpXPAw08KNsoGYzJoLp6_5Ihpr1ZWnBZR8A0WfPKmaOgspDS4BNvm2XfUy5oBLk7Xk=w240-h480-rw"
     },
     programName: "",
     days: [1, 2, 3, 4, 5, 6, 0],
@@ -56,6 +61,7 @@ const schedule = [
     station: {
       name: "Radio Unión Cristiana",
       url: "https://stream-159.zeno.fm/6u0yyg3fwqruv",
+      logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTNk6p8qmpR7lpnr6VeB4V_oFTMK-E7GlnJuQ&s"
     },
     programName: "Fortaleza Noticias",
     days: [1, 2, 3, 4, 5],
@@ -63,9 +69,10 @@ const schedule = [
   {
     startTime: "07:56:00",
     endTime: "08:00:00",
-    station: {
+    station:  {
       name: "Radio La Unción",
       url: "https://jml-stream.com:8010/app.aac",
+      logo: "https://play-lh.googleusercontent.com/oMpXPAw08KNsoGYzJoLp6_5Ihpr1ZWnBZR8A0WfPKmaOgspDS4BNvm2XfUy5oBLk7Xk=w240-h480-rw"
     },
     programName: "",
     days: [1, 2, 3, 4, 5],
@@ -76,6 +83,7 @@ const schedule = [
     station: {
       name: "Radio Nueva Luz",
       url: "https://conectperu.com/8324/stream",
+      logo: "https://cdn-profiles.tunein.com/s291831/images/logod.jpg?t=638518809420000000"
     },
     programName: "Programa N°1",
     days: [1, 2, 3, 4, 5],
@@ -86,6 +94,7 @@ const schedule = [
     station: {
       name: "Radio La Unción",
       url: "https://jml-stream.com:8010/app.aac",
+      logo: "https://play-lh.googleusercontent.com/oMpXPAw08KNsoGYzJoLp6_5Ihpr1ZWnBZR8A0WfPKmaOgspDS4BNvm2XfUy5oBLk7Xk=w240-h480-rw"
     },
     programName: "",
     days: [1, 2, 3, 4, 5],
@@ -96,6 +105,7 @@ const schedule = [
     station: {
       name: "Radio Nueva Luz",
       url: "https://conectperu.com/8324/stream",
+      logo: "https://cdn-profiles.tunein.com/s291831/images/logod.jpg?t=638518809420000000"
     },
     programName: "Programa N°2",
     days: [1, 2, 3, 4, 5],
@@ -103,9 +113,10 @@ const schedule = [
   {
     startTime: "09:56:00",
     endTime: "10:00:00",
-    station: {
+    station:  {
       name: "Radio La Unción",
       url: "https://jml-stream.com:8010/app.aac",
+      logo: "https://play-lh.googleusercontent.com/oMpXPAw08KNsoGYzJoLp6_5Ihpr1ZWnBZR8A0WfPKmaOgspDS4BNvm2XfUy5oBLk7Xk=w240-h480-rw"
     },
     programName: "",
     days: [1, 2, 3, 4, 5],
@@ -114,8 +125,9 @@ const schedule = [
     startTime: "10:00:00",
     endTime: "10:56:00",
     station: {
-    name: "Radio DiospySuyana",
-    url: "https://cast2.my-control-panel.com/proxy/diospis1/stream",
+      name: "Radio DiospySuyana",
+      url: "https://cast2.my-control-panel.com/proxy/diospis1/stream",
+      logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSuWVXzuwMydagta3lPYQH2qI6JUleJHpwcnw&s"
     },
     programName: "Tus Mañanas",
     days: [1, 2, 3, 4, 5],
@@ -123,9 +135,10 @@ const schedule = [
   {
     startTime: "10:56:00",
     endTime: "11:00:00",
-    station: {
+    station:  {
       name: "Radio La Unción",
       url: "https://jml-stream.com:8010/app.aac",
+      logo: "https://play-lh.googleusercontent.com/oMpXPAw08KNsoGYzJoLp6_5Ihpr1ZWnBZR8A0WfPKmaOgspDS4BNvm2XfUy5oBLk7Xk=w240-h480-rw"
     },
     programName: "",
     days: [1, 2, 3, 4, 5],
@@ -133,9 +146,10 @@ const schedule = [
   {
     startTime: "11:00:00",
     endTime: "12:00:00",
-    station: {
+    station:  {
       name: "Radio Nueva Luz",
       url: "https://conectperu.com/8324/stream",
+      logo: "https://cdn-profiles.tunein.com/s291831/images/logod.jpg?t=638518809420000000"
     },
     programName: "La Voz Celestial",
     days: [1, 2, 3, 4, 5],
@@ -146,6 +160,7 @@ const schedule = [
     station: {
       name: "Radio Mas Vida",
       url: "https://masvida.radionline.com.es/listen/m%C3%A1s_vida_rock_and_pop/radio.mp3",
+      logo: "https://static.mytuner.mobi/media/tvos_radios/280/mas-vida.8adfb258.jpg",
     },
     programName: "",
     days: [1, 2, 3, 4, 5],
@@ -153,9 +168,10 @@ const schedule = [
   {
     startTime: "13:00:00",
     endTime: "14:00:00",
-    station: {
+    station:  {
       name: "Radio Vida",
       url: "https://radio.transmite.pe/9318/stream",
+       logo: "https://radiovidacusco.com/live.player/radiovidaenvivo/widgets/player/single/images/LOGORADIO.jpg"
     },
     programName: "Vida Noticias",
     days: [1, 2, 3, 4, 5],
@@ -163,9 +179,10 @@ const schedule = [
   {
     startTime: "14:00:00",
     endTime: "14:56:00",
-    station: {
+    station:  {
       name: "Radio Nueva Luz",
       url: "https://conectperu.com/8324/stream",
+      logo: "https://cdn-profiles.tunein.com/s291831/images/logod.jpg?t=638518809420000000"
     },
     programName: "Programa N°5",
     days: [1, 2, 3, 4, 5],
@@ -173,9 +190,10 @@ const schedule = [
   {
     startTime: "14:56:00",
     endTime: "15:00:00",
-    station: {
+    station:  {
       name: "Radio La Unción",
       url: "https://jml-stream.com:8010/app.aac",
+      logo: "https://play-lh.googleusercontent.com/oMpXPAw08KNsoGYzJoLp6_5Ihpr1ZWnBZR8A0WfPKmaOgspDS4BNvm2XfUy5oBLk7Xk=w240-h480-rw"
     },
     programName: "",
     days: [1, 2, 3, 4, 5],
@@ -183,9 +201,10 @@ const schedule = [
   {
     startTime: "15:00:00",
     endTime: "16:00:00",
-    station: {
+    station:  {
       name: "Radio Nueva Luz",
       url: "https://conectperu.com/8324/stream",
+      logo: "https://cdn-profiles.tunein.com/s291831/images/logod.jpg?t=638518809420000000"
     },
     programName: "Jehova Es Mi Pastor",
     days: [1, 2, 3, 4, 5],
@@ -193,9 +212,10 @@ const schedule = [
   {
     startTime: "16:00:00",
     endTime: "17:00:00",
-    station: {
+    station:  {
       name: "Radio Nueva Luz",
       url: "https://conectperu.com/8324/stream",
+      logo: "https://cdn-profiles.tunein.com/s291831/images/logod.jpg?t=638518809420000000"
     },
     programName: "Programa N°6",
     days: [1, 2, 3, 4, 5],
@@ -203,9 +223,10 @@ const schedule = [
   {
     startTime: "17:00:00",
     endTime: "18:00:00",
-    station: {
+    station:  {
       name: "Radio Vida",
       url: "https://radio.transmite.pe/9318/stream",
+       logo: "https://radiovidacusco.com/live.player/radiovidaenvivo/widgets/player/single/images/LOGORADIO.jpg"
     },
     programName: "Vientos De Vida",
     days: [1, 2, 3, 4, 5],
@@ -216,6 +237,7 @@ const schedule = [
     station: {
       name: "Radio Bethel",
       url: "https://alfa.betheltv.tv/radiobethel/1/icecast.audio",
+      logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQTORXa6Ro8Wijw3ygMTJimv4iCPpmSfouqeg&s"
     },
     programName: "Praise the Lord",
     days: [1, 2, 3, 4, 5],
@@ -223,19 +245,21 @@ const schedule = [
   {
     startTime: "19:00:00",
     endTime: "23:59:59",
-    station:  {
-    name: "Al Fin Radio",
-    url: "https://stream-176.zeno.fm/bwxzzkkuhchvv?zt=eyJhbGciOiJIUzI1NiJ9.eyJzdHJlYW0iOiJid3h6emtrdWhjaHZ2IiwiaG9zdCI6InN0cmVhbS0xNzYuemVuby5mbSIsInJ0dGwiOjUsImp0aSI6InhzeU1NX3g4UXN5UTc1S3Y3aHpnaFEiLCJpYXQiOjE3NDY0MTU4NTksImV4cCI6MTc0NjQxNTkxOX0.J89a5kpQ0yYFvIYQ6kawcdU__Tz44n0j3sqPLHV4gVI",
-  },
+    station: {
+      name: "Radio Mas Vida",
+      url: "https://masvida.radionline.com.es/listen/m%C3%A1s_vida_rock_and_pop/radio.mp3",
+      logo: "https://static.mytuner.mobi/media/tvos_radios/280/mas-vida.8adfb258.jpg",
+    },
     programName: "Programa Final",
     days: [1, 2, 3, 4, 5],
   },
   {
     startTime: "07:00:00",
     endTime: "08:00:00",
-    station: {
+    station:  {
       name: "Radio Vida",
       url: "https://radio.transmite.pe/9318/stream",
+       logo: "https://radiovidacusco.com/live.player/radiovidaenvivo/widgets/player/single/images/LOGORADIO.jpg"
     },
     programName: "El Sembrador",
     days: [6, 0],
@@ -243,9 +267,10 @@ const schedule = [
   {
     startTime: "08:00:00",
     endTime: "14:00:00",
-    station: {
+    station:  {
       name: "Radio La Unción",
       url: "https://jml-stream.com:8010/app.aac",
+      logo: "https://play-lh.googleusercontent.com/oMpXPAw08KNsoGYzJoLp6_5Ihpr1ZWnBZR8A0WfPKmaOgspDS4BNvm2XfUy5oBLk7Xk=w240-h480-rw"
     },
     programName: "",
     days: [6],
@@ -253,9 +278,10 @@ const schedule = [
   {
     startTime: "14:00:00",
     endTime: "15:00:00",
-    station: {
+    station:  {
       name: "Radio Vida",
       url: "https://radio.transmite.pe/9318/stream",
+       logo: "https://radiovidacusco.com/live.player/radiovidaenvivo/widgets/player/single/images/LOGORADIO.jpg"
     },
     programName: "",
     days: [6],
@@ -264,10 +290,10 @@ const schedule = [
     startTime: "15:00:00",
     endTime: "23:59:59",
     station: {
-    name: "Al Fin Radio",
-    url: "https://stream-176.zeno.fm/bwxzzkkuhchvv?zt=eyJhbGciOiJIUzI1NiJ9.eyJzdHJlYW0iOiJid3h6emtrdWhjaHZ2IiwiaG9zdCI6InN0cmVhbS0xNzYuemVuby5mbSIsInJ0dGwiOjUsImp0aSI6InhzeU1NX3g4UXN5UTc1S3Y3aHpnaFEiLCJpYXQiOjE3NDY0MTU4NTksImV4cCI6MTc0NjQxNTkxOX0.J89a5kpQ0yYFvIYQ6kawcdU__Tz44n0j3sqPLHV4gVI",
-    logo: "https://radioscristianasdelmundo.com/sites/default/files/styles/player_image/public/2022-07/al-fin-radio-mexico.png.webp?itok=n1UB7Vpp"
-  },
+      name: "Radio Mas Vida",
+      url: "https://masvida.radionline.com.es/listen/m%C3%A1s_vida_rock_and_pop/radio.mp3",
+      logo: "https://static.mytuner.mobi/media/tvos_radios/280/mas-vida.8adfb258.jpg",
+    },
     programName: "",
     days: [6],
   },
@@ -277,6 +303,7 @@ const schedule = [
     station: {
       name: "Radio Nueva Luz Complemento",
       url: "https://conectperu.com/8338/stream",
+      logo: "https://cdn-profiles.tunein.com/s291831/images/logod.jpg?t=638518809420000000"
     },
     programName: "Culto N°1",
     days: [0],
@@ -287,6 +314,7 @@ const schedule = [
     station: {
       name: "Radio Mas Vida",
       url: "https://masvida.radionline.com.es/listen/m%C3%A1s_vida_rock_and_pop/radio.mp3",
+      logo: "https://static.mytuner.mobi/media/tvos_radios/280/mas-vida.8adfb258.jpg",
     },
     programName: "",
     days: [0],
@@ -297,6 +325,7 @@ const schedule = [
     station: {
       name: "Radio Nueva Luz Complemento",
       url: "https://conectperu.com/8338/stream",
+      logo: "https://cdn-profiles.tunein.com/s291831/images/logod.jpg?t=638518809420000000"
     },
     programName: "Culto N°2",
     days: [0],
@@ -307,6 +336,7 @@ const schedule = [
     station: {
       name: "Radio Mas Vida",
       url: "https://masvida.radionline.com.es/listen/m%C3%A1s_vida_rock_and_pop/radio.mp3",
+      logo: "https://static.mytuner.mobi/media/tvos_radios/280/mas-vida.8adfb258.jpg",
     },
     programName: "",
     days: [0],
@@ -315,38 +345,52 @@ const schedule = [
 
 
 const stations = [
+ {
+      name: "Radio Mas Vida",
+      url: "https://masvida.radionline.com.es/listen/m%C3%A1s_vida_rock_and_pop/radio.mp3",
+      logo: "https://static.mytuner.mobi/media/tvos_radios/280/mas-vida.8adfb258.jpg",
+    },
   {
-    name: "Radio Mas Vida",
-    url: "https://masvida.radionline.com.es/listen/m%C3%A1s_vida_rock_and_pop/radio.mp3",
-    
-  },
-  { name: "Radio Vida", url: "https://radio.transmite.pe/9318/stream" },
-  { name: "Radio Nueva Luz", url: "https://conectperu.com/8324/stream" },
+      name: "Radio Vida",
+      url: "https://radio.transmite.pe/9318/stream",
+       logo: "https://radiovidacusco.com/live.player/radiovidaenvivo/widgets/player/single/images/LOGORADIO.jpg"
+    },
   {
-    name: "Radio Bethel",
-    url: "https://alfa.betheltv.tv/radiobethel/1/icecast.audio",
-  },
+      name: "Radio Nueva Luz",
+      url: "https://conectperu.com/8324/stream",
+      logo: "https://cdn-profiles.tunein.com/s291831/images/logod.jpg?t=638518809420000000"
+    },
+ {
+      name: "Radio Bethel",
+      url: "https://alfa.betheltv.tv/radiobethel/1/icecast.audio",
+      logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQTORXa6Ro8Wijw3ygMTJimv4iCPpmSfouqeg&s"
+    },
   {
-    name: "Radio Unión Cristiana",
-    url: "https://stream-159.zeno.fm/6u0yyg3fwqruv?zt=eyJhbGciOiJIUzI1NiJ9.eyJzdHJlYW0iOiI2dTB5eWczZndxcnV2IiwiaG9zdCI6InN0cmVhbS0xNTkuemVuby5mbSIsInJ0dGwiOjUsImp0aSI6IlVDMEJ2U3hRVDdtWFJrWFIxRWNYMnciLCJpYXQiOjE3NDU0MTU1NTQsImV4cCI6MTc0NTQxNTYxNH0.7VFx0sGr6IHh5R2HQm_7nAGNyqoiLLe0IZdbYFgO4WA",
-  },
+      name: "Radio Unión Cristiana",
+      url: "https://stream-159.zeno.fm/6u0yyg3fwqruv",
+      logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTNk6p8qmpR7lpnr6VeB4V_oFTMK-E7GlnJuQ&s"
+    },
   {
-    name: "Radio La Unción",
-    url: "https://jml-stream.com:8010/app.aac",
-  },
+      name: "Radio La Unción",
+      url: "https://jml-stream.com:8010/app.aac",
+      logo: "https://play-lh.googleusercontent.com/oMpXPAw08KNsoGYzJoLp6_5Ihpr1ZWnBZR8A0WfPKmaOgspDS4BNvm2XfUy5oBLk7Xk=w240-h480-rw"
+    },
   {
     name: "Radio La Voz Celestial",
     url: "http://live.rcast.net:8568/;",
+    logo: "https://yt3.googleusercontent.com/ytc/AIdro_lcyN3YpVQj3yenqT2VQVnWzL7_NICWkfFpFXehVuP_UpA=s900-c-k-c0x00ffffff-no-rj"
   },
   {
-    name: "Radio DiospySuyana",
-    url: "https://cast2.my-control-panel.com/proxy/diospis1/stream",
-  },
-  {
-    name: "Radio Nueva Luz Complemento",
-    url: "https://conectperu.com/8338/stream",
-  },
-  {
+      name: "Radio DiospySuyana",
+      url: "https://cast2.my-control-panel.com/proxy/diospis1/stream",
+      logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSuWVXzuwMydagta3lPYQH2qI6JUleJHpwcnw&s"
+    },
+ {
+      name: "Radio Nueva Luz Complemento",
+      url: "https://conectperu.com/8338/stream",
+      logo: "https://cdn-profiles.tunein.com/s291831/images/logod.jpg?t=638518809420000000"
+    },
+   {
     name: "Al Fin Radio",
     url: "https://stream-176.zeno.fm/bwxzzkkuhchvv?zt=eyJhbGciOiJIUzI1NiJ9.eyJzdHJlYW0iOiJid3h6emtrdWhjaHZ2IiwiaG9zdCI6InN0cmVhbS0xNzYuemVuby5mbSIsInJ0dGwiOjUsImp0aSI6InhzeU1NX3g4UXN5UTc1S3Y3aHpnaFEiLCJpYXQiOjE3NDY0MTU4NTksImV4cCI6MTc0NjQxNTkxOX0.J89a5kpQ0yYFvIYQ6kawcdU__Tz44n0j3sqPLHV4gVI",
     logo: "https://radioscristianasdelmundo.com/sites/default/files/styles/player_image/public/2022-07/al-fin-radio-mexico.png.webp?itok=n1UB7Vpp"
@@ -375,6 +419,7 @@ function renderStationList() {
       updateStationListUI(station.url);
       updateProgramTitle(station.name, null);
       updateModeIndicator(); // Actualizar el indicador de modo
+      updateMediaSession(station); // <-- Añade esto
     });
     stationList.appendChild(li);
   });
@@ -425,7 +470,7 @@ function playStation(station) {
       });
   }
   updateStationListUI(station.url);
-  updateMediaSession(station); // <-- Añade esta línea
+  updateMediaSession(station); // Actualizar la sesión de medios
 }
 
 // Obtener la estación programada según la hora actual
@@ -453,6 +498,7 @@ function checkSchedule() {
     if (scheduled) {
       if (radioPlayer.src !== scheduled.station.url || (!isPlaying && !radioPlayer.paused)) {
         playStation(scheduled.station);
+        updateMediaSession(scheduled.station); // <-- Añade esto
       }
       updateProgramTitle(scheduled.station.name, scheduled.endTime);
     } else {
@@ -646,6 +692,18 @@ window.addEventListener("load", () => {
   const scheduled = getScheduledStation();
   const programTitle = document.getElementById("programTitle");
 
+  // Crear el mensaje
+  const userMessage = document.createElement("div");
+  userMessage.id = "userMessage";
+  userMessage.style.color = "red";
+  userMessage.style.textAlign = "center";
+  userMessage.style.marginTop = "10px";
+  userMessage.style.fontSize = "1rem";
+  userMessage.textContent = "La reproducción automática fue bloqueada. Haz clic en el botón de Play/Pause para iniciar.";
+
+  // Insertar el mensaje debajo del título del programa
+  programTitle.insertAdjacentElement("afterend", userMessage);
+
   if (scheduled) {
     radioPlayer.src = scheduled.station.url;
     radioPlayer.play().then(() => {
@@ -653,24 +711,10 @@ window.addEventListener("load", () => {
       playPauseIcon.src =
         "https://img.icons8.com/ios-filled/50/000000/pause.png";
       isPlaying = true;
-      const userMessage = document.getElementById("userMessage");
-      if (userMessage) userMessage.remove();
-      updateMediaSession(scheduled.station); // <-- Añade esta línea
+      userMessage.remove(); // Eliminar el mensaje si la reproducción automática funciona
+      updateMediaSession(scheduled.station); // <-- Añade esto
     }).catch(() => {
-      playPauseIcon.src =
-        "https://img.icons8.com/ios-filled/50/000000/play.png";
-      isPlaying = false;
-      let userMessage = document.getElementById("userMessage");
-      if (!userMessage) {
-        userMessage = document.createElement("div");
-        userMessage.id = "userMessage";
-        userMessage.style.color = "red";
-        userMessage.style.textAlign = "center";
-        userMessage.style.marginTop = "10px";
-        userMessage.style.fontSize = "1rem";
-        userMessage.textContent = "La reproducción automática fue bloqueada. Haz clic en el botón de Play para iniciar.";
-        programTitle.insertAdjacentElement("afterend", userMessage);
-      }
+      console.log("Reproducción automática bloqueada.");
     });
   } else {
     updateProgramTitle(null, null);
@@ -678,7 +722,7 @@ window.addEventListener("load", () => {
       "https://img.icons8.com/ios-filled/50/000000/play.png";
     isPlaying = false;
   }
-  updateNextEvent();
+  updateNextEvent(); // Actualizar el próximo evento al cargar
   renderTodaySchedule();
   updateCurrentDayIndicator();
 });
@@ -691,14 +735,15 @@ document.getElementById("scrollToTopButton").addEventListener("click", () => {
 });
 
 document.getElementById("shuffleButton").addEventListener("click", () => {
-  const stations = document.querySelectorAll("#stationList li");
-  if (stations.length > 0) {
-    const randomIndex = Math.floor(Math.random() * stations.length);
-    const randomStation = stations[randomIndex];
-    randomStation.click(); // Simula un clic en la emisora aleatoria
+  const stationsList = document.querySelectorAll("#stationList li");
+  if (stationsList.length > 0) {
+    const randomIndex = Math.floor(Math.random() * stationsList.length);
+    const randomStation = stationsList[randomIndex];
+    randomStation.click();
+    // El updateMediaSession ya se llama en el click de la lista
   }
   const modeIndicator = document.getElementById("modeIndicator");
-  modeIndicator.textContent = "Modo: Aleatorio"; // Cambiar el texto al tocar shuffle
+  modeIndicator.textContent = "Modo: Aleatorio";
 });
 
 document.getElementById("scrollToStationsButton").addEventListener("click", () => {
