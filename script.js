@@ -397,10 +397,13 @@ function timeToSeconds(time) {
 function updateProgramTitle(stationName, endTime) {
   if (stationName && endTime !== null) {
     programTitle.textContent = stationName;
+    document.title = stationName + " | Radio Online"; // Cambia el título de la pestaña
   } else if (stationName) {
     programTitle.textContent = stationName;
+    document.title = stationName + " | Radio Online";
   } else {
     programTitle.textContent = "Radio Online";
+    document.title = "Radio Online";
     endTimeSpan.textContent = "";
   }
 }
