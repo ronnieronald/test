@@ -294,7 +294,7 @@ const schedule = [
     url: "https://stream-176.zeno.fm/bwxzzkkuhchvv?zt=eyJhbGciOiJIUzI1NiJ9.eyJzdHJlYW0iOiJid3h6emtrdWhjaHZ2IiwiaG9zdCI6InN0cmVhbS0xNzYuemVuby5mbSIsInJ0dGwiOjUsImp0aSI6InhzeU1NX3g4UXN5UTc1S3Y3aHpnaFEiLCJpYXQiOjE3NDY0MTU4NTksImV4cCI6MTc0NjQxNTkxOX0.J89a5kpQ0yYFvIYQ6kawcdU__Tz44n0j3sqPLHV4gVI",
     logo: "https://radioscristianasdelmundo.com/sites/default/files/styles/player_image/public/2022-07/al-fin-radio-mexico.png.webp?itok=n1UB7Vpp"
   },
-    programName: "",
+    programName: "Programa Final",
     days: [6],
   },
   {
