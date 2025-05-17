@@ -417,7 +417,7 @@ function renderStationList() {
       playStation(station);
       isManualSelection = true;
       updateStationListUI(station.url);
-      updateProgramTitle(station.name, null);
+      updateProgramTitle(station.name, null, "", false);
       updateModeIndicator(); // Actualizar el indicador de modo
       updateMediaSession(station); // <-- Añade esto
     });
@@ -440,9 +440,12 @@ function timeToSeconds(time) {
 }
 
 // Actualizar el título y hora de finalización
-function updateProgramTitle(stationName, endTime) {
+function updateProgramTitle(stationName, endTime, programName = "", showProgram = false) {
   if (stationName && endTime !== null) {
-    programTitle.textContent = stationName;
+    // Si showProgram es true y hay nombre de programa, lo muestra debajo
+    programTitle.innerHTML = showProgram && programName
+      ? `${stationName}<br><span style="font-size:0.9em;color:#666">${programName}</span>`
+      : stationName;
   } else if (stationName) {
     programTitle.textContent = stationName;
   } else {
@@ -500,7 +503,12 @@ function checkSchedule() {
         playStation(scheduled.station);
         updateMediaSession(scheduled.station); // <-- Añade esto
       }
-      updateProgramTitle(scheduled.station.name, scheduled.endTime);
+      updateProgramTitle(
+        scheduled.station.name,
+        scheduled.endTime,
+        scheduled.programName,
+        true // Mostrar nombre del programa
+      );
     } else {
       radioPlayer.pause();
       radioPlayer.src = "";
