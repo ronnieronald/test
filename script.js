@@ -543,17 +543,16 @@ playPauseButton.addEventListener("click", () => {
   }
 
   if (radioPlayer.paused) {
-    // Siempre intenta reproducir, sin importar si hay src o no
-    radioPlayer.play().then(() => {
-      playPauseIcon.src =
-        "https://img.icons8.com/ios-filled/50/000000/pause.png";
-      isPlaying = true;
-    }).catch(() => {
-      // Si falla, asegúrate de mostrar el icono de play
-      playPauseIcon.src =
-        "https://img.icons8.com/ios-filled/50/000000/play.png";
-      isPlaying = false;
-    });
+    const scheduled = getScheduledStation();
+    if (scheduled && !radioPlayer.src) {
+      playStation(scheduled.station);
+    } else {
+      radioPlayer.play().then(() => {
+        playPauseIcon.src =
+          "https://img.icons8.com/ios-filled/50/000000/pause.png";
+        isPlaying = true;
+      });
+    }
   } else {
     radioPlayer.pause();
     playPauseIcon.src =
@@ -700,15 +699,7 @@ window.addEventListener("load", () => {
   const scheduled = getScheduledStation();
   const programTitle = document.getElementById("programTitle");
 
-  // Crear el mensaje
-  const userMessage = document.createElement("div");
-  userMessage.id = "userMessage";
-  userMessage.style.color = "red";
-  userMessage.style.textAlign = "center";
-  userMessage.style.marginTop = "10px";
-  userMessage.style.fontSize = "1rem";
-  userMessage.textContent = "La reproducción automática fue bloqueada. Haz clic en el botón de Play/Pause para iniciar.";
-
+ 
   // Insertar el mensaje debajo del título del programa
   programTitle.insertAdjacentElement("afterend", userMessage);
 
@@ -722,11 +713,6 @@ window.addEventListener("load", () => {
       userMessage.remove(); // Eliminar el mensaje si la reproducción automática funciona
       updateMediaSession(scheduled.station); // <-- Añade esto
     }).catch(() => {
-      // Cambia aquí: asegúrate de que el icono sea "Play" y el estado sea correcto
-      playPauseIcon.src =
-        "https://img.icons8.com/ios-filled/50/000000/play.png";
-      isPlaying = false;
-      // El mensaje ya está visible
       console.log("Reproducción automática bloqueada.");
     });
   } else {
@@ -832,3 +818,48 @@ function updateMediaSession(station, programName = "") {
     });
   }
 }
+
+function hidePreloader() {
+  const preloader = document.getElementById("preloader");
+  if (preloader) preloader.style.display = "none";
+}
+
+// Control del preloader y mensaje de bloqueo
+window.addEventListener("load", () => {
+  const preloader = document.getElementById("preloader");
+  const preloaderMsg = document.getElementById("preloaderMsg");
+  const preloaderOk = document.getElementById("preloaderOk");
+  const scheduled = getScheduledStation();
+
+  if (scheduled) {
+    radioPlayer.src = scheduled.station.url;
+    radioPlayer.play().then(() => {
+      // Reproducción automática exitosa
+      hidePreloader();
+      updateProgramTitle(scheduled.station.name, scheduled.endTime);
+      playPauseIcon.src = "https://img.icons8.com/ios-filled/50/000000/pause.png";
+      isPlaying = true;
+      updateMediaSession(scheduled.station);
+    }).catch(() => {
+      // Bloqueo de reproducción automática
+      preloaderMsg.textContent = "La reproducción automática fue bloqueada. Por favor, haga clic en el botón de Play/Pause para iniciar la reproducción.";
+      preloaderOk.style.display = "inline-block";
+      playPauseIcon.src = "https://img.icons8.com/ios-filled/50/000000/play.png";
+      isPlaying = false;
+    });
+  } else {
+    updateProgramTitle(null, null);
+    playPauseIcon.src = "https://img.icons8.com/ios-filled/50/000000/play.png";
+    isPlaying = false;
+    hidePreloader();
+  }
+
+  // Botón OK para cerrar el preloader manualmente
+  preloaderOk.addEventListener("click", hidePreloader);
+});
+
+// Ocultar preloader cuando el audio comience a reproducirse (por si el usuario da play manual)
+radioPlayer.addEventListener("play", hidePreloader);
+
+// También ocultar si el usuario selecciona una estación manualmente
+stationList.addEventListener("click", hidePreloader);
