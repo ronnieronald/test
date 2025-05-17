@@ -543,16 +543,17 @@ playPauseButton.addEventListener("click", () => {
   }
 
   if (radioPlayer.paused) {
-    const scheduled = getScheduledStation();
-    if (scheduled && !radioPlayer.src) {
-      playStation(scheduled.station);
-    } else {
-      radioPlayer.play().then(() => {
-        playPauseIcon.src =
-          "https://img.icons8.com/ios-filled/50/000000/pause.png";
-        isPlaying = true;
-      });
-    }
+    // Siempre intenta reproducir, sin importar si hay src o no
+    radioPlayer.play().then(() => {
+      playPauseIcon.src =
+        "https://img.icons8.com/ios-filled/50/000000/pause.png";
+      isPlaying = true;
+    }).catch(() => {
+      // Si falla, asegúrate de mostrar el icono de play
+      playPauseIcon.src =
+        "https://img.icons8.com/ios-filled/50/000000/play.png";
+      isPlaying = false;
+    });
   } else {
     radioPlayer.pause();
     playPauseIcon.src =
@@ -721,6 +722,11 @@ window.addEventListener("load", () => {
       userMessage.remove(); // Eliminar el mensaje si la reproducción automática funciona
       updateMediaSession(scheduled.station); // <-- Añade esto
     }).catch(() => {
+      // Cambia aquí: asegúrate de que el icono sea "Play" y el estado sea correcto
+      playPauseIcon.src =
+        "https://img.icons8.com/ios-filled/50/000000/play.png";
+      isPlaying = false;
+      // El mensaje ya está visible
       console.log("Reproducción automática bloqueada.");
     });
   } else {
