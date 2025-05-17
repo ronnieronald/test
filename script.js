@@ -395,51 +395,37 @@ function timeToSeconds(time) {
 }
 
 // Actualizar el título y hora de finalización
-function updateProgramTitle(stationName, endTime, programName = "") {
+function updateProgramTitle(stationName, endTime) {
   if (stationName && endTime !== null) {
     programTitle.textContent = stationName;
-    document.title = (programName ? programName + " - " : "") + stationName + " | Radio Online";
   } else if (stationName) {
     programTitle.textContent = stationName;
-    document.title = stationName + " | Radio Online";
   } else {
     programTitle.textContent = "Radio Online";
-    document.title = "Radio Online";
     endTimeSpan.textContent = "";
   }
 }
 
 // Reproducir una estación
-function playStation(station, programName = "") {
+function playStation(station) {
   radioPlayer.src = station.url;
   const playPromise = radioPlayer.play();
   if (playPromise !== undefined) {
     playPromise
+      .catch((error) => {
+        console.log("Reproducción automática bloqueada:", error);
+        playPauseIcon.src =
+          "https://img.icons8.com/ios-filled/50/000000/play.png";
+        isPlaying = false;
+      })
       .then(() => {
         playPauseIcon.src =
           "https://img.icons8.com/ios-filled/50/000000/pause.png";
         isPlaying = true;
-      })
-      .catch((error) => {
-        playPauseIcon.src =
-          "https://img.icons8.com/ios-filled/50/000000/play.png";
-        isPlaying = false;
-        // Mostrar mensaje solo si fue bloqueada la reproducción
-        let userMessage = document.getElementById("userMessage");
-        if (!userMessage) {
-          userMessage = document.createElement("div");
-          userMessage.id = "userMessage";
-          userMessage.style.color = "red";
-          userMessage.style.textAlign = "center";
-          userMessage.style.marginTop = "10px";
-          userMessage.style.fontSize = "1rem";
-          userMessage.textContent = "La reproducción automática fue bloqueada. Haz clic en el botón de Play para iniciar.";
-          programTitle.insertAdjacentElement("afterend", userMessage);
-        }
       });
   }
   updateStationListUI(station.url);
-  updateMediaSession(station, programName); // Actualizar la sesión de medios
+  updateMediaSession(station); // <-- Añade esta línea
 }
 
 // Obtener la estación programada según la hora actual
@@ -466,9 +452,9 @@ function checkSchedule() {
     const scheduled = getScheduledStation();
     if (scheduled) {
       if (radioPlayer.src !== scheduled.station.url || (!isPlaying && !radioPlayer.paused)) {
-        playStation(scheduled.station, scheduled.programName);
+        playStation(scheduled.station);
       }
-      updateProgramTitle(scheduled.station.name, scheduled.endTime, scheduled.programName);
+      updateProgramTitle(scheduled.station.name, scheduled.endTime);
     } else {
       radioPlayer.pause();
       radioPlayer.src = "";
@@ -660,27 +646,16 @@ window.addEventListener("load", () => {
   const scheduled = getScheduledStation();
   const programTitle = document.getElementById("programTitle");
 
-  // Crear el mensaje
-  const userMessage = document.createElement("div");
-  userMessage.id = "userMessage";
-  userMessage.style.color = "red";
-  userMessage.style.textAlign = "center";
-  userMessage.style.marginTop = "10px";
-  userMessage.style.fontSize = "1rem";
-  userMessage.textContent = "La reproducción automática fue bloqueada. Haz clic en el botón de Play/Pause para iniciar.";
-
-  // Insertar el mensaje debajo del título del programa
-  programTitle.insertAdjacentElement("afterend", userMessage);
-
   if (scheduled) {
     radioPlayer.src = scheduled.station.url;
     radioPlayer.play().then(() => {
-      updateProgramTitle(scheduled.station.name, scheduled.endTime, scheduled.programName);
+      updateProgramTitle(scheduled.station.name, scheduled.endTime);
       playPauseIcon.src =
         "https://img.icons8.com/ios-filled/50/000000/pause.png";
       isPlaying = true;
-      userMessage.remove(); // Eliminar el mensaje si la reproducción automática funciona
-      updateMediaSession(scheduled.station, scheduled.programName);
+      const userMessage = document.getElementById("userMessage");
+      if (userMessage) userMessage.remove();
+      updateMediaSession(scheduled.station); // <-- Añade esta línea
     }).catch(() => {
       playPauseIcon.src =
         "https://img.icons8.com/ios-filled/50/000000/play.png";
@@ -703,7 +678,7 @@ window.addEventListener("load", () => {
       "https://img.icons8.com/ios-filled/50/000000/play.png";
     isPlaying = false;
   }
-  updateNextEvent(); // Actualizar el próximo evento al cargar
+  updateNextEvent();
   renderTodaySchedule();
   updateCurrentDayIndicator();
 });
@@ -775,15 +750,14 @@ window.addEventListener("online", () => {
   }
 });
 
-// Modifica updateMediaSession para incluir el nombre del programa si lo tienes
-function updateMediaSession(station, programName = "") {
+function updateMediaSession(station) {
   if ('mediaSession' in navigator && station) {
     navigator.mediaSession.metadata = new window.MediaMetadata({
       title: station.name,
-      artist: programName || '', // Nombre del programa si existe
+      artist: '', // Puedes poner el nombre del programa si lo tienes
       album: 'Radio Online',
       artwork: [
-        { src: station.logo || 'https://tudominio.com/logo-generico.png', sizes: '512x512', type: 'image/png' }
+        { src: station.logo || 'https://img.icons8.com/ios-filled/100/000000/radio.png', sizes: '512x512', type: 'image/png' }
       ]
     });
   }
