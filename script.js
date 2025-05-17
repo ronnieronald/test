@@ -927,72 +927,8 @@ function hidePreloader() {
   if (preloader) preloader.style.display = "none";
 }
 
+// --- INICIALIZACIÓN ÚNICA Y CONTROL DE PRELOADER ---
 window.addEventListener("load", () => {
-  const preloader = document.getElementById("preloader");
-  const preloaderMsg = document.getElementById("preloaderMsg");
-  const preloaderStart = document.getElementById("preloaderStart");
-  const scheduled = getScheduledStation();
-
-  function hidePreloaderAndUpdate() {
-    hidePreloader();
-    updateNextEvent();
-    renderTodaySchedule();
-    updateCurrentDayIndicator();
-  }
-
-  function iniciarRadio() {
-    if (scheduled) {
-      radioPlayer.src = scheduled.station.url;
-      radioPlayer.play().then(() => {
-        hidePreloaderAndUpdate();
-        updateProgramTitle(scheduled.station.name, scheduled.endTime);
-        playPauseIcon.src = "https://img.icons8.com/ios-filled/50/000000/pause.png";
-        isPlaying = true;
-        updateMediaSession(scheduled.station);
-      }).catch(() => {
-        hidePreloaderAndUpdate();
-      });
-    } else {
-      updateProgramTitle(null, null);
-      playPauseIcon.src = "https://img.icons8.com/ios-filled/50/000000/play.png";
-      isPlaying = false;
-      hidePreloaderAndUpdate();
-    }
-  }
-
-  if (scheduled) {
-    radioPlayer.src = scheduled.station.url;
-    radioPlayer.play().then(() => {
-      // Reproducción automática exitosa
-      hidePreloaderAndUpdate();
-      updateProgramTitle(scheduled.station.name, scheduled.endTime);
-      playPauseIcon.src = "https://img.icons8.com/ios-filled/50/000000/pause.png";
-      isPlaying = true;
-      updateMediaSession(scheduled.station);
-    }).catch(() => {
-      // Bloqueo de reproducción automática
-      preloaderMsg.textContent = "La reproducción automática ha sido bloqueada por el navegador. Por favor, haz clic en el botón Iniciar para comenzar la reproducción.";
-      preloaderStart.style.display = "inline-block";
-      preloaderStart.onclick = iniciarRadio;
-      playPauseIcon.src = "https://img.icons8.com/ios-filled/50/000000/play.png";
-      isPlaying = false;
-    });
-  } else {
-    updateProgramTitle(null, null);
-    playPauseIcon.src = "https://img.icons8.com/ios-filled/50/000000/play.png";
-    isPlaying = false;
-    hidePreloaderAndUpdate();
-  }
-});
-
-// Ocultar preloader cuando el audio comience a reproducirse (por si el usuario da play manual)
-radioPlayer.addEventListener("play", hidePreloader);
-
-// También ocultar si el usuario selecciona una estación manualmente
-stationList.addEventListener("click", hidePreloader);
-
-window.addEventListener("load", () => {
-  // Inicializa todo lo necesario antes de intentar cargar la radio
   renderStationList();
   checkSchedule();
   updateNextEvent();
@@ -1034,14 +970,12 @@ window.addEventListener("load", () => {
   if (scheduled) {
     radioPlayer.src = scheduled.station.url;
     radioPlayer.play().then(() => {
-      // Reproducción automática exitosa
       hidePreloaderAndUpdate();
       updateProgramTitle(scheduled.station.name, scheduled.endTime);
       playPauseIcon.src = "https://img.icons8.com/ios-filled/50/000000/pause.png";
       isPlaying = true;
       updateMediaSession(scheduled.station);
     }).catch(() => {
-      // Bloqueo de reproducción automática
       preloaderMsg.textContent = "La reproducción automática ha sido bloqueada por el navegador. Por favor, haz clic en el botón Iniciar para comenzar la reproducción.";
       preloaderStart.style.display = "inline-block";
       preloaderStart.onclick = iniciarRadio;
