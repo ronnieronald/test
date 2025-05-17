@@ -412,7 +412,6 @@ function playStation(station) {
   if (playPromise !== undefined) {
     playPromise
       .catch((error) => {
-        console.log("Reproducción automática bloqueada:", error);
         playPauseIcon.src =
           "https://img.icons8.com/ios-filled/50/000000/play.png";
         isPlaying = false;
@@ -424,6 +423,7 @@ function playStation(station) {
       });
   }
   updateStationListUI(station.url);
+  updateMediaSession(station); // <--- Añade esta línea
 }
 
 // Obtener la estación programada según la hora actual
@@ -629,6 +629,19 @@ function updateCurrentDayIndicator() {
   */
 }
 
+function updateMediaSession(station) {
+  if ('mediaSession' in navigator && station) {
+    navigator.mediaSession.metadata = new window.MediaMetadata({
+      title: station.name,
+      artist: '', // Puedes poner el nombre del programa si lo tienes
+      album: 'Radio Online',
+      artwork: [
+        { src: station.logo || 'https://tudominio.com/logo-generico.png', sizes: '512x512', type: 'image/png' }
+      ]
+    });
+  }
+}
+
 // Inicializar
 renderStationList();
 checkSchedule();
@@ -654,6 +667,7 @@ window.addEventListener("load", () => {
       // Si existía un mensaje, lo quitamos
       const userMessage = document.getElementById("userMessage");
       if (userMessage) userMessage.remove();
+      updateMediaSession(scheduled.station); // <--- Añade esta línea
     }).catch(() => {
       // SOLO si la reproducción automática fue bloqueada:
       playPauseIcon.src =
