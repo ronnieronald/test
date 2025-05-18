@@ -8,7 +8,7 @@ const schedule = [
       url: "https://jml-stream.com:8010/app.aac",
       logo: "https://play-lh.googleusercontent.com/oMpXPAw08KNsoGYzJoLp6_5Ihpr1ZWnBZR8A0WfPKmaOgspDS4BNvm2XfUy5oBLk7Xk=w240-h480-rw"
     },
-    programName: "",
+    programName: "Hora Cero con Jesús",
     days: [1, 2, 3, 4, 5, 6, 0],
   },
   {
@@ -30,7 +30,7 @@ const schedule = [
       url: "https://jml-stream.com:8010/app.aac",
       logo: "https://play-lh.googleusercontent.com/oMpXPAw08KNsoGYzJoLp6_5Ihpr1ZWnBZR8A0WfPKmaOgspDS4BNvm2XfUy5oBLk7Xk=w240-h480-rw"
     },
-    programName: "",
+    programName: "Break Music",
     days: [1, 2, 3, 4, 5, 6, 0],
   },
   {
@@ -41,7 +41,7 @@ const schedule = [
       url: "https://radio.transmite.pe/9318/stream",
        logo: "https://radiovidacusco.com/live.player/radiovidaenvivo/widgets/player/single/images/LOGORADIO.jpg"
     },
-    programName: "",
+    programName: "Programa N°2",
     days: [1, 2, 3, 4, 5, 6, 0],
   },
   {
@@ -52,7 +52,7 @@ const schedule = [
       url: "https://jml-stream.com:8010/app.aac",
       logo: "https://play-lh.googleusercontent.com/oMpXPAw08KNsoGYzJoLp6_5Ihpr1ZWnBZR8A0WfPKmaOgspDS4BNvm2XfUy5oBLk7Xk=w240-h480-rw"
     },
-    programName: "",
+    programName: "Break Music",
     days: [1, 2, 3, 4, 5, 6, 0],
   },
   {
@@ -74,7 +74,7 @@ const schedule = [
       url: "https://jml-stream.com:8010/app.aac",
       logo: "https://play-lh.googleusercontent.com/oMpXPAw08KNsoGYzJoLp6_5Ihpr1ZWnBZR8A0WfPKmaOgspDS4BNvm2XfUy5oBLk7Xk=w240-h480-rw"
     },
-    programName: "",
+    programName: "Break Music",
     days: [1, 2, 3, 4, 5],
   },
   {
@@ -85,7 +85,7 @@ const schedule = [
       url: "https://conectperu.com/8324/stream",
       logo: "https://cdn-profiles.tunein.com/s291831/images/logod.jpg?t=638518809420000000"
     },
-    programName: "Programa N°1",
+    programName: "Programa N°4",
     days: [1, 2, 3, 4, 5],
   },
   {
@@ -96,7 +96,7 @@ const schedule = [
       url: "https://jml-stream.com:8010/app.aac",
       logo: "https://play-lh.googleusercontent.com/oMpXPAw08KNsoGYzJoLp6_5Ihpr1ZWnBZR8A0WfPKmaOgspDS4BNvm2XfUy5oBLk7Xk=w240-h480-rw"
     },
-    programName: "",
+    programName: "Break Music",
     days: [1, 2, 3, 4, 5],
   },
   {
@@ -107,7 +107,7 @@ const schedule = [
       url: "https://conectperu.com/8324/stream",
       logo: "https://cdn-profiles.tunein.com/s291831/images/logod.jpg?t=638518809420000000"
     },
-    programName: "Programa N°2",
+    programName: "Programa N°5",
     days: [1, 2, 3, 4, 5],
   },
   {
@@ -118,7 +118,7 @@ const schedule = [
       url: "https://jml-stream.com:8010/app.aac",
       logo: "https://play-lh.googleusercontent.com/oMpXPAw08KNsoGYzJoLp6_5Ihpr1ZWnBZR8A0WfPKmaOgspDS4BNvm2XfUy5oBLk7Xk=w240-h480-rw"
     },
-    programName: "",
+    programName: "Break Music",
     days: [1, 2, 3, 4, 5],
   },
   {
@@ -140,7 +140,7 @@ const schedule = [
       url: "https://jml-stream.com:8010/app.aac",
       logo: "https://play-lh.googleusercontent.com/oMpXPAw08KNsoGYzJoLp6_5Ihpr1ZWnBZR8A0WfPKmaOgspDS4BNvm2XfUy5oBLk7Xk=w240-h480-rw"
     },
-    programName: "",
+    programName: "Break Music",
     days: [1, 2, 3, 4, 5],
   },
   {
@@ -158,11 +158,11 @@ const schedule = [
     startTime: "12:00:00",
     endTime: "13:00:00",
     station: {
-      name: "Radio Mas Vida",
-      url: "https://masvida.radionline.com.es/listen/m%C3%A1s_vida_rock_and_pop/radio.mp3",
-      logo: "https://static.mytuner.mobi/media/tvos_radios/280/mas-vida.8adfb258.jpg",
-    },
-    programName: "",
+    name: "Al Fin Radio",
+    url: "https://stream-176.zeno.fm/bwxzzkkuhchvv?zt=eyJhbGciOiJIUzI1NiJ9.eyJzdHJlYW0iOiJid3h6emtrdWhjaHZ2IiwiaG9zdCI6InN0cmVhbS0xNzYuemVuby5mbSIsInJ0dGwiOjUsImp0aSI6InhzeU1NX3g4UXN5UTc1S3Y3aHpnaFEiLCJpYXQiOjE3NDY0MTU4NTksImV4cCI6MTc0NjQxNTkxOX0.J89a5kpQ0yYFvIYQ6kawcdU__Tz44n0j3sqPLHV4gVI",
+    logo: "https://radioscristianasdelmundo.com/sites/default/files/styles/player_image/public/2022-07/al-fin-radio-mexico.png.webp?itok=n1UB7Vpp"
+  },
+    programName: "Sing to the Lord",
     days: [1, 2, 3, 4, 5],
   },
   {
@@ -184,7 +184,7 @@ const schedule = [
       url: "https://conectperu.com/8324/stream",
       logo: "https://cdn-profiles.tunein.com/s291831/images/logod.jpg?t=638518809420000000"
     },
-    programName: "Programa N°5",
+    programName: "Programa N°10",
     days: [1, 2, 3, 4, 5],
   },
   {
@@ -195,7 +195,7 @@ const schedule = [
       url: "https://jml-stream.com:8010/app.aac",
       logo: "https://play-lh.googleusercontent.com/oMpXPAw08KNsoGYzJoLp6_5Ihpr1ZWnBZR8A0WfPKmaOgspDS4BNvm2XfUy5oBLk7Xk=w240-h480-rw"
     },
-    programName: "",
+    programName: "Break Music",
     days: [1, 2, 3, 4, 5],
   },
   {
@@ -217,7 +217,7 @@ const schedule = [
       url: "https://conectperu.com/8324/stream",
       logo: "https://cdn-profiles.tunein.com/s291831/images/logod.jpg?t=638518809420000000"
     },
-    programName: "Programa N°6",
+    programName: "Programa N°12",
     days: [1, 2, 3, 4, 5],
   },
   {
@@ -246,10 +246,10 @@ const schedule = [
     startTime: "19:00:00",
     endTime: "23:59:59",
     station: {
-      name: "Radio Mas Vida",
-      url: "https://masvida.radionline.com.es/listen/m%C3%A1s_vida_rock_and_pop/radio.mp3",
-      logo: "https://static.mytuner.mobi/media/tvos_radios/280/mas-vida.8adfb258.jpg",
-    },
+    name: "Al Fin Radio",
+    url: "https://stream-176.zeno.fm/bwxzzkkuhchvv?zt=eyJhbGciOiJIUzI1NiJ9.eyJzdHJlYW0iOiJid3h6emtrdWhjaHZ2IiwiaG9zdCI6InN0cmVhbS0xNzYuemVuby5mbSIsInJ0dGwiOjUsImp0aSI6InhzeU1NX3g4UXN5UTc1S3Y3aHpnaFEiLCJpYXQiOjE3NDY0MTU4NTksImV4cCI6MTc0NjQxNTkxOX0.J89a5kpQ0yYFvIYQ6kawcdU__Tz44n0j3sqPLHV4gVI",
+    logo: "https://radioscristianasdelmundo.com/sites/default/files/styles/player_image/public/2022-07/al-fin-radio-mexico.png.webp?itok=n1UB7Vpp"
+  },
     programName: "Programa Final",
     days: [1, 2, 3, 4, 5],
   },
@@ -272,7 +272,7 @@ const schedule = [
       url: "https://jml-stream.com:8010/app.aac",
       logo: "https://play-lh.googleusercontent.com/oMpXPAw08KNsoGYzJoLp6_5Ihpr1ZWnBZR8A0WfPKmaOgspDS4BNvm2XfUy5oBLk7Xk=w240-h480-rw"
     },
-    programName: "programa 100",
+    programName: "Break con Dios",
     days: [6],
   },
   {
@@ -297,9 +297,10 @@ const schedule = [
     programName: "Programa Final",
     days: [6],
   },
+  //domingo
   {
     startTime: "08:00:00",
-    endTime: "10:00:00",
+    endTime: "10:30:00",
     station: {
       name: "Radio Nueva Luz Complemento",
       url: "https://conectperu.com/8338/stream",
@@ -309,14 +310,14 @@ const schedule = [
     days: [0],
   },
   {
-    startTime: "10:00:00",
+    startTime: "10:30:00",
     endTime: "11:00:00",
     station: {
     name: "Al Fin Radio",
     url: "https://stream-176.zeno.fm/bwxzzkkuhchvv?zt=eyJhbGciOiJIUzI1NiJ9.eyJzdHJlYW0iOiJid3h6emtrdWhjaHZ2IiwiaG9zdCI6InN0cmVhbS0xNzYuemVuby5mbSIsInJ0dGwiOjUsImp0aSI6InhzeU1NX3g4UXN5UTc1S3Y3aHpnaFEiLCJpYXQiOjE3NDY0MTU4NTksImV4cCI6MTc0NjQxNTkxOX0.J89a5kpQ0yYFvIYQ6kawcdU__Tz44n0j3sqPLHV4gVI",
     logo: "https://radioscristianasdelmundo.com/sites/default/files/styles/player_image/public/2022-07/al-fin-radio-mexico.png.webp?itok=n1UB7Vpp"
   },
-    programName: "",
+    programName: "Break Music",
     days: [0],
   },
   {
@@ -823,7 +824,9 @@ function updateMediaSession(station, programName = "") {
       title: station.name,
       artist: artistText,
       album: "",
-      artwork: []
+      artwork: [
+        { src: station.logo || 'https://img.icons8.com/ios-filled/100/000000/radio.png', sizes: '512x512', type: 'image/png' }
+      ]
     });
     // Botón pausa
     navigator.mediaSession.setActionHandler('pause', () => {
