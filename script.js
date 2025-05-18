@@ -735,14 +735,25 @@ document.getElementById("scrollToTopButton").addEventListener("click", () => {
 
 document.getElementById("shuffleButton").addEventListener("click", () => {
   const stationsList = document.querySelectorAll("#stationList li");
-  if (stationsList.length > 0) {
-    const randomIndex = Math.floor(Math.random() * stationsList.length);
-    const randomStation = stationsList[randomIndex];
-    randomStation.click();
-    // El updateMediaSession ya se llama en el click de la lista
+  if (stationsList.length > 1) { // Debe haber al menos 2 estaciones para evitar bucle infinito
+    let randomIndex;
+    let randomStation;
+    let currentSrc = radioPlayer.src;
+
+    // Buscar una estación diferente a la actual
+    do {
+      randomIndex = Math.floor(Math.random() * stationsList.length);
+      randomStation = stations[randomIndex];
+    } while (randomStation.url === currentSrc.replace(/^https?:\/\//, "") && stationsList.length > 1);
+
+    // Buscar el elemento <li> correspondiente y hacer click
+    const li = Array.from(stationsList).find(li => li.textContent === randomStation.name);
+    if (li) li.click();
+
+    // Actualizar el modo en el indicador
+    const modeIndicator = document.getElementById("modeIndicator");
+    modeIndicator.textContent = "Modo: Aleatorio";
   }
-  const modeIndicator = document.getElementById("modeIndicator");
-  modeIndicator.textContent = "Modo: Aleatorio";
 });
 
 document.getElementById("scrollToStationsButton").addEventListener("click", () => {
@@ -797,9 +808,20 @@ window.addEventListener("online", () => {
 function updateMediaSession(station, programName = "") {
   if ('mediaSession' in navigator && station) {
     const pageTitle = document.title || "Radio Online";
+    let artistText = "";
+
+    // Solo mostrar "Radio Online" en modo manual
+    if (isManualSelection) {
+      artistText = "Radio Online";
+    } else if (programName && programName.trim() !== "") {
+      artistText = programName;
+    } else {
+      artistText = "";
+    }
+
     navigator.mediaSession.metadata = new window.MediaMetadata({
       title: station.name,
-      artist: programName && programName.trim() !== "" ? programName : "",
+      artist: artistText,
       album: pageTitle,
       artwork: [
         { src: station.logo || 'https://img.icons8.com/ios-filled/100/000000/radio.png', sizes: '512x512', type: 'image/png' }
