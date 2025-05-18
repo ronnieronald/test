@@ -346,15 +346,11 @@ const schedule = [
 
 
 const stations = [
- {
-      name: "Radio Mas Vida",
-      url: "https://masvida.radionline.com.es/listen/m%C3%A1s_vida_rock_and_pop/radio.mp3",
-      logo: "https://static.mytuner.mobi/media/tvos_radios/280/mas-vida.8adfb258.jpg",
-    },
+
   {
       name: "Radio Vida",
       url: "https://radio.transmite.pe/9318/stream",
-       logo: "https://radiovidacusco.com/live.player/radiovidaenvivo/widgets/player/single/images/LOGORADIO.jpg"
+       logo: "/assets/radio-vida.png"
     },
   {
       name: "Radio Nueva Luz",
@@ -376,11 +372,6 @@ const stations = [
       url: "https://jml-stream.com:8010/app.aac",
       logo: "https://play-lh.googleusercontent.com/oMpXPAw08KNsoGYzJoLp6_5Ihpr1ZWnBZR8A0WfPKmaOgspDS4BNvm2XfUy5oBLk7Xk=w240-h480-rw"
     },
-  {
-    name: "Radio La Voz Celestial",
-    url: "http://live.rcast.net:8568/;",
-    logo: "https://yt3.googleusercontent.com/ytc/AIdro_lcyN3YpVQj3yenqT2VQVnWzL7_NICWkfFpFXehVuP_UpA=s900-c-k-c0x00ffffff-no-rj"
-  },
   {
       name: "Radio DiospySuyana",
       url: "https://cast2.my-control-panel.com/proxy/diospis1/stream",
