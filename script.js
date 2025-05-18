@@ -350,7 +350,7 @@ const stations = [
   {
       name: "Radio Vida",
       url: "https://radio.transmite.pe/9318/stream",
-       logo: "/assets/radio-vida.png"
+       logo: "/assets/radio-vida.jpg"
     },
   {
       name: "Radio Nueva Luz",
