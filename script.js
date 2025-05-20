@@ -46,7 +46,7 @@ const schedule = [
   },
   {
     startTime: "06:56:00",
-    endTime: "07:00:00",
+    endTime: "07:05:00",
     station:  {
       name: "Radio La Unción",
       url: "https://jml-stream.com:8010/app.aac",
@@ -56,7 +56,7 @@ const schedule = [
     days: [1, 2, 3, 4, 5, 6, 0],
   },
   {
-    startTime: "07:00:00",
+    startTime: "07:06:00",
     endTime: "07:56:00",
     station: {
       name: "Radio Unión Cristiana",
@@ -68,7 +68,7 @@ const schedule = [
   },
   {
     startTime: "07:56:00",
-    endTime: "08:00:00",
+    endTime: "08:03:00",
     station:  {
       name: "Radio La Unción",
       url: "https://jml-stream.com:8010/app.aac",
@@ -78,7 +78,7 @@ const schedule = [
     days: [1, 2, 3, 4, 5],
   },
   {
-    startTime: "08:00:00",
+    startTime: "08:03:00",
     endTime: "08:56:00",
     station: {
       name: "Radio Nueva Luz",
@@ -200,13 +200,24 @@ const schedule = [
   },
   {
     startTime: "15:00:00",
-    endTime: "16:00:00",
+    endTime: "15:56:00",
     station:  {
       name: "Radio Nueva Luz",
       url: "https://conectperu.com/8324/stream",
       logo: "https://cdn-profiles.tunein.com/s291831/images/logod.jpg?t=638518809420000000"
     },
     programName: "Jehova Es Mi Pastor",
+    days: [1, 2, 3, 4, 5],
+  },
+  {
+    startTime: "15:56:00",
+    endTime: "16:00:00",
+    station:  {
+      name: "Radio La Unción",
+      url: "https://jml-stream.com:8010/app.aac",
+      logo: "https://play-lh.googleusercontent.com/oMpXPAw08KNsoGYzJoLp6_5Ihpr1ZWnBZR8A0WfPKmaOgspDS4BNvm2XfUy5oBLk7Xk=w240-h480-rw"
+    },
+    programName: "Break Music",
     days: [1, 2, 3, 4, 5],
   },
   {
@@ -235,12 +246,23 @@ const schedule = [
     startTime: "18:00:00",
     endTime: "19:00:00",
     station: {
+      name: "Radio DiospySuyana",
+      url: "https://cast2.my-control-panel.com/proxy/diospis1/stream",
+      logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSuWVXzuwMydagta3lPYQH2qI6JUleJHpwcnw&s"
+    },
+    programName: "Encuentro Latinoamericano",
+    days: [1, 3],
+  },
+ {
+    startTime: "18:00:00",
+    endTime: "19:00:00",
+    station:  {
       name: "Radio Bethel",
       url: "https://alfa.betheltv.tv/radiobethel/1/icecast.audio",
       logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQTORXa6Ro8Wijw3ygMTJimv4iCPpmSfouqeg&s"
     },
-    programName: "Praise the Lord",
-    days: [1, 2, 3, 4, 5],
+    programName: "Praise The Lord",
+    days: [2, 4, 5],
   },
   {
     startTime: "19:00:00",
@@ -253,6 +275,7 @@ const schedule = [
     programName: "Programa Final",
     days: [1, 2, 3, 4, 5],
   },
+  //sabado
   {
     startTime: "07:00:00",
     endTime: "08:00:00",
@@ -941,76 +964,64 @@ function hidePreloader() {
   if (preloader) preloader.style.display = "none";
 }
 
-// --- INICIALIZACIÓN ÚNICA Y CONTROL DE PRELOADER ---
-window.addEventListener("load", () => {
-  renderStationList();
-  checkSchedule();
-  updateNextEvent();
-  renderTodaySchedule();
-  updateCurrentDayIndicator();
+// --- RECONEXIÓN AUTOMÁTICA DEL STREAMING ---
+let reconnectInterval = null;
 
-  const preloader = document.getElementById("preloader");
-  const preloaderMsg = document.getElementById("preloaderMsg");
-  const preloaderStart = document.getElementById("preloaderStart");
-  const scheduled = getScheduledStation();
+window.addEventListener("offline", () => {
+  console.log("Conexión a la red perdida. Pausando reproducción.");
+  radioPlayer.pause();
+  playPauseIcon.src = "https://img.icons8.com/ios-filled/50/000000/play.png";
+  isPlaying = false;
 
-  function hidePreloaderAndUpdate() {
-    hidePreloader();
-    updateNextEvent();
-    renderTodaySchedule();
-    updateCurrentDayIndicator();
-  }
-
-  function iniciarRadio() {
-    if (scheduled) {
-      radioPlayer.src = scheduled.station.url;
-      radioPlayer.play().then(() => {
-        hidePreloaderAndUpdate();
-        updateProgramTitle(scheduled.station.name, scheduled.endTime);
-        playPauseIcon.src = "https://img.icons8.com/ios-filled/50/000000/pause.png";
-        isPlaying = true;
-        updateMediaSession(scheduled.station);
-      }).catch(() => {
-        hidePreloaderAndUpdate();
-      });
-    } else {
-      updateProgramTitle(null, null);
-      playPauseIcon.src = "https://img.icons8.com/ios-filled/50/000000/play.png";
-      isPlaying = false;
-      hidePreloaderAndUpdate();
-    }
-  }
-
-  if (scheduled) {
-    radioPlayer.src = scheduled.station.url;
-    radioPlayer.play().then(() => {
-      hidePreloaderAndUpdate();
-      updateProgramTitle(scheduled.station.name, scheduled.endTime);
-      playPauseIcon.src = "https://img.icons8.com/ios-filled/50/000000/pause.png";
-      isPlaying = true;
-      updateMediaSession(scheduled.station);
-    }).catch(() => {
-      preloaderMsg.textContent = "La reproducción automática ha sido bloqueada por el navegador. Por favor, haz clic en el botón Iniciar para comenzar la reproducción.";
-      preloaderStart.style.display = "inline-block";
-      preloaderStart.onclick = iniciarRadio;
-      playPauseIcon.src = "https://img.icons8.com/ios-filled/50/000000/play.png";
-      isPlaying = false;
-    });
-  } else {
-    updateProgramTitle(null, null);
-    playPauseIcon.src = "https://img.icons8.com/ios-filled/50/000000/play.png";
-    isPlaying = false;
-    hidePreloaderAndUpdate();
+  // Iniciar intentos de reconexión cada segundo
+  if (!reconnectInterval) {
+    reconnectInterval = setInterval(() => {
+      if (navigator.onLine) {
+        console.log("Red detectada, intentando reconectar...");
+        reconnectStream();
+      }
+    }, 1000);
   }
 });
 
-// Ocultar preloader cuando el audio comience a reproducirse (por si el usuario da play manual)
-radioPlayer.addEventListener("play", hidePreloader);
+window.addEventListener("online", () => {
+  // Si el usuario vuelve manualmente, también intentamos reconectar
+  if (reconnectInterval) {
+    clearInterval(reconnectInterval);
+    reconnectInterval = null;
+  }
+  reconnectStream();
+});
 
-// También ocultar si el usuario selecciona una estación manualmente
-stationList.addEventListener("click", hidePreloader);
+function reconnectStream() {
+  // Limpiar el intervalo si ya hay conexión
+  if (reconnectInterval) {
+    clearInterval(reconnectInterval);
+    reconnectInterval = null;
+  }
 
-function hidePreloader() {
-  const preloader = document.getElementById("preloader");
-  if (preloader) preloader.style.display = "none";
+  // Forzar recarga del streaming (sin caché)
+  if (!isManualSelection) {
+    const scheduled = getScheduledStation();
+    if (scheduled) {
+      // Forzar recarga del src para evitar caché
+      radioPlayer.src = scheduled.station.url + "?nocache=" + Date.now();
+      radioPlayer.load();
+      radioPlayer.play().then(() => {
+        playPauseIcon.src = "https://img.icons8.com/ios-filled/50/000000/pause.png";
+        isPlaying = true;
+      });
+    }
+  } else if (radioPlayer.src) {
+    // Si es selección manual, también forzar recarga
+    const currentStation = stations.find(s => radioPlayer.src.includes(s.url));
+    if (currentStation) {
+      radioPlayer.src = currentStation.url + "?nocache=" + Date.now();
+      radioPlayer.load();
+      radioPlayer.play().then(() => {
+        playPauseIcon.src = "https://img.icons8.com/ios-filled/50/000000/pause.png";
+        isPlaying = true;
+      });
+    }
+  }
 }
