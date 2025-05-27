@@ -7,6 +7,31 @@ body {
   margin: 0;
   background-color: #f0f0f0;
 }
+
+body.dark-mode {
+  background-color: #121212; /* Fondo oscuro */
+  color: #ffffff; /* Texto claro */
+}
+
+body.dark-mode a {
+  color: #bb86fc; /* Color de enlace en modo oscuro */
+}
+
+body.dark-mode a:hover {
+  color: #d18fff; /* Color más claro al pasar el cursor */
+}
+
+body.dark-mode #currentDayIndicator {
+  color: #ffffff;
+}
+
+body.dark-mode img {
+  filter: invert(1);
+}
+
+
+
+
 .container {
   text-align: center;
   background-color: white;
@@ -17,24 +42,50 @@ body {
   width: 100%;
   position: relative; /* Para posicionar el endTime */
 }
+
+body.dark-mode .container {
+  background-color: #1e1e1e; /* Fondo oscuro del contenedor */
+  color: #ffffff; /* Texto claro */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); /* Sombra más tenue */
+}
+
+
+
+
 #playPauseButton {
   cursor: pointer;
   margin: 0; /* Elimina el margen */
   padding: 0; /* Elimina el espacio interno */
 }
+
+
+
+
 #playPauseButton img {
   width: 40px; /* Ajusta el tamaño del ícono */
   height: 40px;
 }
+
+
+
+
 #currentStation {
   margin: 10px 0;
   font-size: 1.2em;
   color: #333;
 }
+
+
+
+
 #stationList {
   list-style: none;
   padding: 0;
 }
+
+
+
+
 #stationList li {
   padding: 10px;
   margin: 5px 0;
@@ -43,26 +94,53 @@ body {
   cursor: pointer;
   transition: background-color 0.3s;
 }
-#stationList li:hover {
-  background-color: #d0d0d0;
+
+body.dark-mode #stationList {
+  background-color: #1e1e1e; /* Fondo oscuro */
+  color: #ffffff; /* Texto claro */
+  border: 1px solid #333; /* Borde oscuro */
+  padding: 10px;
+  border-radius: 5px;
 }
-#stationList li.active {
-  background-color: #60B5FF;
-  color: white;
+
+/* Elementos de las listas */
+body.dark-mode #programList li,
+body.dark-mode #stationList li {
+  background-color: #2a2a2a; /* Fondo más oscuro */
+  color: #ffffff; /* Texto claro */
+  border: 1px solid #444; /* Borde tenue */
 }
-audio {
-  display: none; /* Ocultar el reproductor nativo */
+
+body.dark-mode #stationList li:hover {
+  background-color: #333; /* Fondo más claro al pasar el cursor */
 }
+
+
+
+
 #programTitle {
   margin-top: 20px; /* Espacio entre el modo y el título */
   font-size: 1.1em;
   text-align: center; /* Centrar el título */
 }
+
+
+
+
 h1 {
   font-size: 1.5em;
   color: #222;
   margin: 0 0 10px 0;
 }
+
+body.dark-mode h1,
+body.dark-mode h2 {
+  color: #ffffff; /* Texto claro */
+}
+
+
+
+
 #endTime {
   position: absolute;
   top: 10px;
@@ -70,19 +148,42 @@ h1 {
   font-size: 0.9em;
   color: #555;
 }
+
+
+
+
 #nextEvent {
   margin-top: 10px;
   font-size: 0.9em;
   color: black; /* Cambiar el color del texto a negro */
   text-align: center;
 }
+
+body.dark-mode #nextEvent {
+  background-color: #1e1e1e; /* Fondo oscuro */
+  color: #ffffff; /* Texto claro */
+}
+
+/* Títulos */
+body.dark-mode h1,
+body.dark-mode h2 {
+  color: #ffffff; /* Texto claro */
+}
+
+
+
+
 #nextEventDetails {
   font-size: 0.9em;
   color: #555; /* Color más claro para los detalles */
 }
+
+
+
+
 #modeIndicator {
   position: absolute;
-  top: 10px;
+  top: 12px;
   right: 10px;
   font-size: 0.7em;
   color: #000000;
@@ -91,6 +192,16 @@ h1 {
   border-radius: 5px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
+
+body.dark-mode #modeIndicator {
+  background-color: #333; /* Fondo oscuro */
+  color: #ffffff; /* Texto claro */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5); /* Sombra tenue */
+}
+
+
+
+
 #scrollToTopButton {
   padding: 10px 20px;
   font-size: 1em;
@@ -102,9 +213,17 @@ h1 {
   transition: background-color 0.3s;
 }
 
-#scrollToTopButton:hover {
-  background-color: #1c30e4;
+body.dark-mode #scrollToTopButton {
+  background-color: #333; /* Fondo oscuro */
+  color: #ffffff; /* Texto claro */
 }
+
+body.dark-mode #scrollToTopButton:hover {
+  background-color: #444; /* Fondo más claro al pasar el cursor */
+}
+
+
+
 
 #controls {
   display: flex;
@@ -115,6 +234,9 @@ h1 {
   margin-top: 20px;
 }
 
+
+
+
 #scrollToStationsButton img,
 #playPauseButton img,
 #shuffleButton img {
@@ -124,11 +246,17 @@ h1 {
   transition: transform 0.2s;
 }
 
+
+
+
 #scrollToStationsButton img:hover,
 #playPauseButton img:hover,
 #shuffleButton img:hover {
   transform: scale(1.1); /* Efecto de zoom al pasar el cursor */
 }
+
+
+
 
 #scheduleContainer {
   margin-top: 20px;
@@ -139,17 +267,36 @@ h1 {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
+body.dark-mode #scheduleContainer {
+  background-color: #1e1e1e; /* Fondo oscuro */
+  color: #ffffff; /* Texto claro */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); /* Sombra más tenue */
+}
+
+
+
+
 #scheduleTitle {
   font-size: 0.8em;
   color: #333;
   margin-bottom: 10px;
 }
 
+body.dark-mode #scheduleTitle {
+  color: #ffffff; /* Texto claro */
+}
+
+
+
+
 #programList {
   list-style: none;
   padding: 0;
   margin: 0;
 }
+
+
+
 
 .program-item {
   display: flex;
@@ -162,6 +309,30 @@ h1 {
   transition: background-color 0.3s ease; /* Transición suave al pasar el cursor */
 }
 
+body.dark-mode #programList {
+  background-color: #1e1e1e; /* Fondo oscuro */
+  color: #ffffff; /* Texto claro */
+  border: 1px solid #333; /* Borde oscuro */
+  padding: 10px;
+  border-radius: 5px;
+}
+
+/* Elementos de las listas */
+body.dark-mode #programList li,
+body.dark-mode #stationList li {
+  background-color: #2a2a2a; /* Fondo más oscuro */
+  color: #ffffff; /* Texto claro */
+  border: 1px solid #444; /* Borde tenue */
+}
+
+body.dark-mode #programList li:hover,
+body.dark-mode #stationList li:hover {
+  background-color: #333; /* Fondo más claro al pasar el cursor */
+}
+
+
+
+
 .current-program {
   background-color: #d4edda; /* Verde claro */
   color: #0085f9; /* Verde oscuro */
@@ -169,6 +340,11 @@ h1 {
   border: 1px solid #60B5FF; /* Borde verde oscuro */
   padding: 10px 15px; /* Asegurar que el texto no esté al extremo */
 }
+
+
+
+
+
 
 .program-name {
   font-family: "Source Code Pro", monospace; /* Cambiar la fuente */
@@ -179,6 +355,9 @@ h1 {
   flex: 1; /* Permitir que el nombre ocupe más espacio si es necesario */
 }
 
+
+
+
 .program-time {
   text-align: right;
   color: #555;
@@ -188,6 +367,9 @@ h1 {
   align-self: center; /* Asegurar que la hora esté centrada verticalmente */
 }
 
+
+
+
 #programList li {
   margin: 5px 0;
   padding: 10px;
@@ -196,9 +378,12 @@ h1 {
   font-size: 0.9em;
 }
 
+
+
+
 #currentDayIndicator {
   position: absolute;
-  top: 10px;
+  top: 12px;
   left: 5px;
   font-size: 0.6em; /* Aumentar el tamaño del texto */
   color: #000000; /* Cambiar el color del texto a blanco */
@@ -212,14 +397,30 @@ h1 {
   transition: background-color 0.3s ease, transform 0.2s ease; /* Transiciones suaves */
 }
 
+body.dark-mode #currentDayIndicator {
+  background-color: #333; /* Fondo oscuro */
+  color: #ffffff; /* Texto claro */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5); /* Sombra tenue */
+}
+
+
+
+
+
 #currentDayIndicator:hover {
   background-color: #fafafa; /* Cambiar el color de fondo al pasar el mouse */
   transform: scale(1.05); /* Efecto de zoom al pasar el mouse */
 }
 
+
+
+
 #currentDayIndicator:active {
   transform: scale(0.95); /* Efecto de clic */
 }
+
+
+
 
 #footerText {
   text-align: center;
@@ -228,12 +429,38 @@ h1 {
   color: #333; /* Color del texto */
 }
 
+body.dark-mode #footerText {
+  background-color: #1e1e1e; /* Fondo oscuro */
+  color: #ffffff; /* Texto claro */
+}
+
+
+
+
 .spin {
   animation: spin 1s linear infinite;
 }
+
+
+
+
 #preloaderSpinner {
   animation: spin 1s linear infinite;
 }
+
+
+
 @keyframes spin {
   100% { transform: rotate(360deg); }
+}
+
+#darkModeToggle {
+  width: 15px; /* Ajusta el ancho del ícono */
+  height: 15px; /* Ajusta la altura del ícono */
+  cursor: pointer;
+  transition: transform 0.2s ease; /* Efecto suave al pasar el cursor */
+}
+
+#darkModeToggle:hover {
+  transform: scale(1.1); /* Efecto de zoom al pasar el cursor */
 }
