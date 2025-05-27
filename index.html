@@ -12,12 +12,62 @@
     />
   </head>
   <body>
-    <div id="preloader" style="position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(0,0,0,0.85);display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:9999;">
-      <img src="https://img.icons8.com/ios-filled/100/ffffff/loading.png" alt="Cargando..." id="preloaderSpinner" style="width:60px;height:60px;">
-      <div id="preloaderMsg" style="color:#fff;margin-top:20px;font-size:1.2rem;">Cargando radio...</div>
-      <button id="preloaderStart" style="display:none;margin-top:30px;padding:12px 32px;font-size:1rem;border:none;border-radius:8px;background:#fff;color:#222;cursor:pointer;">Iniciar</button>
+    <div
+      id="preloader"
+      style="
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background: rgba(0, 0, 0, 0.85);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        z-index: 9999;
+      "
+    >
+      <img
+        src="https://img.icons8.com/ios-filled/100/ffffff/loading.png"
+        alt="Cargando..."
+        id="preloaderSpinner"
+        style="width: 60px; height: 60px"
+      />
+      <div
+        id="preloaderMsg"
+        style="color: #fff; margin-top: 20px; font-size: 1.2rem"
+      >
+        Cargando radio...
+      </div>
+      <button
+        id="preloaderStart"
+        style="
+          display: none;
+          margin-top: 30px;
+          padding: 12px 32px;
+          font-size: 1rem;
+          border: none;
+          border-radius: 8px;
+          background: #fff;
+          color: #222;
+          cursor: pointer;
+        "
+      >
+        Iniciar
+      </button>
     </div>
     <div class="container">
+      <div id="currentDayContainer">
+        <div id="currentDayIndicator" role="button" tabindex="0">Lunes</div>
+        <img
+          id="darkModeToggle"
+          src="https://img.icons8.com/ios-filled/50/do-not-disturb-2.png"
+          alt="Modo Oscuro"
+          title="Modo Oscuro"
+          style="cursor: pointer;"
+        />
+      </div>
       <h1 id="programTitle"></h1>
       <span id="endTime"></span>
       <div id="controls">
@@ -53,28 +103,29 @@
         <h2 id="scheduleTitle">En Curso</h2>
         <ul id="programList"></ul>
       </div>
-      <div id="currentDayIndicator" role="button" tabindex="0">Lunes</div>
-  
       <div id="modeIndicator">Modo: Automático</div>
       <h2>Estaciones Disponibles</h2>
       <ul id="stationList"></ul>
       <button id="scrollToTopButton">Volver arriba</button>
       <div id="footerText">
         <p>
-          Al usar este servicio, aceptas los 
+          Al usar este servicio, aceptas los
           <a href="terminos.html" target="_blank">términos y condiciones</a>.
         </p>
       </div>
     </div>
     <script src="script.js"></script>
     <script>
-      document.getElementById("currentDayIndicator").addEventListener("click", () => {
-        const scheduleContainer = document.getElementById("scheduleContainer");
-        scheduleContainer.scrollIntoView({
-          behavior: "smooth", // Desplazamiento suave
-          block: "start", // Alinear al inicio del contenedor
+      document
+        .getElementById("currentDayIndicator")
+        .addEventListener("click", () => {
+          const scheduleContainer =
+            document.getElementById("scheduleContainer");
+          scheduleContainer.scrollIntoView({
+            behavior: "smooth", // Desplazamiento suave
+            block: "start", // Alinear al inicio del contenedor
+          });
         });
-      });
     </script>
   </body>
 </html>
