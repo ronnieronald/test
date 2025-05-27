@@ -932,8 +932,6 @@ function updateCurrentDayIndicator() {
 
 
 
-
-
 // Inicializar
 renderStationList();
 checkSchedule();
@@ -1087,8 +1085,6 @@ document.getElementById("currentDayIndicator").addEventListener("keydown", (even
     });
   }
 });
-
-
 
 
 
@@ -1426,11 +1422,6 @@ window.addEventListener("load", () => {
 
 
 
-
-
-
-
-
 // Ocultar preloader cuando el audio comience a reproducirse (por si el usuario da play manual)
 radioPlayer.addEventListener("play", hidePreloader);
 
@@ -1479,6 +1470,20 @@ function tryReconnect() {
 
 const darkModeToggle = document.getElementById("darkModeToggle");
 
+// Al cargar la página, verifica si el modo oscuro está activado
+if (localStorage.getItem("darkMode") === "true") {
+  document.body.classList.add("dark-mode");
+  darkModeToggle.src = "https://img.icons8.com/windows/32/sun--v1.png"; // Ícono de sol
+}
+
+// Alternar el modo oscuro y guardar el estado
 darkModeToggle.addEventListener("click", () => {
   document.body.classList.toggle("dark-mode");
+  const isDarkMode = document.body.classList.contains("dark-mode");
+  localStorage.setItem("darkMode", isDarkMode); // Guardar el estado en localStorage
+
+  // Cambiar el ícono según el estado
+  darkModeToggle.src = isDarkMode
+    ? "https://img.icons8.com/windows/32/sun--v1.png" // Ícono de sol
+    : "https://img.icons8.com/ios-filled/50/do-not-disturb-2.png"; // Ícono original
 });
