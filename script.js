@@ -364,10 +364,10 @@ const schedule = [
   {
     startTime: "20:00:00",
     endTime: "23:59:59",
-    station:  {
-    name: "Al Fin Radio",
-    url: "https://stream-176.zeno.fm/bwxzzkkuhchvv?zt=eyJhbGciOiJIUzI1NiJ9.eyJzdHJlYW0iOiJid3h6emtrdWhjaHZ2IiwiaG9zdCI6InN0cmVhbS0xNzYuemVuby5mbSIsInJ0dGwiOjUsImp0aSI6InhzeU1NX3g4UXN5UTc1S3Y3aHpnaFEiLCJpYXQiOjE3NDY0MTU4NTksImV4cCI6MTc0NjQxNTkxOX0.J89a5kpQ0yYFvIYQ6kawcdU__Tz44n0j3sqPLHV4gVI",
-    logo: "/assets/RadioAlFin.jpg"
+    station:    {
+    name: "Radio Poder Celestial",
+    url: "https://stream-154.zeno.fm/tynupzcnv5quv?zt=eyJhbGciOiJIUzI1NiJ9.eyJzdHJlYW0iOiJ0eW51cHpjbnY1cXV2IiwiaG9zdCI6InN0cmVhbS0xNTQuemVuby5mbSIsInJ0dGwiOjUsImp0aSI6Im9Qek1GWG0tVDlDZ3ZnM2lHLVdubmciLCJpYXQiOjE3NDg0ODMxOTUsImV4cCI6MTc0ODQ4MzI1NX0.j7l_EmuxplKTjo6K-uHjDVXVmKynoNzsHPvPrbPKwwM",
+    logo: "/assets/RadioPoderCelestial.jpg"
   },
     programName: "Programa Final",
     days: [1, 2, 3, 4, 5],
@@ -567,6 +567,14 @@ const stations = [
     url: "https://stream-176.zeno.fm/bwxzzkkuhchvv?zt=eyJhbGciOiJIUzI1NiJ9.eyJzdHJlYW0iOiJid3h6emtrdWhjaHZ2IiwiaG9zdCI6InN0cmVhbS0xNzYuemVuby5mbSIsInJ0dGwiOjUsImp0aSI6InhzeU1NX3g4UXN5UTc1S3Y3aHpnaFEiLCJpYXQiOjE3NDY0MTU4NTksImV4cCI6MTc0NjQxNTkxOX0.J89a5kpQ0yYFvIYQ6kawcdU__Tz44n0j3sqPLHV4gVI",
     logo: "/assets/RadioAlFin.jpg"
   },
+  {
+    name: "Radio Poder Celestial",
+    url: "https://stream-154.zeno.fm/tynupzcnv5quv?zt=eyJhbGciOiJIUzI1NiJ9.eyJzdHJlYW0iOiJ0eW51cHpjbnY1cXV2IiwiaG9zdCI6InN0cmVhbS0xNTQuemVuby5mbSIsInJ0dGwiOjUsImp0aSI6Im9Qek1GWG0tVDlDZ3ZnM2lHLVdubmciLCJpYXQiOjE3NDg0ODMxOTUsImV4cCI6MTc0ODQ4MzI1NX0.j7l_EmuxplKTjo6K-uHjDVXVmKynoNzsHPvPrbPKwwM",
+    logo: "/assets/RadioPoderCelestial.jpg"
+  },
+
+
+  
   
 ];
 
@@ -611,9 +619,10 @@ function renderStationList() {
 
 // Actualizar la UI de la lista de estaciones
 function updateStationListUI(activeUrl) {
+  console.log("Actualizando lista de estaciones para URL activa:", activeUrl);
   Array.from(stationList.children).forEach((li) => {
     const station = stations.find((s) => s.name === li.textContent);
-    li.classList.toggle("active", station.url === activeUrl);
+    li.classList.toggle("active", station && station.url === activeUrl);
   });
 }
 
@@ -697,45 +706,27 @@ function getScheduledStation() {
 
 // Verificar y actualizar la estación según el horario
 function checkSchedule() {
+  console.log("Ejecutando checkSchedule...");
   if (!isManualSelection) {
     const scheduled = getScheduledStation();
     if (scheduled) {
+      console.log("Estación programada:", scheduled.station.name);
       if (radioPlayer.src !== scheduled.station.url || (!isPlaying && !radioPlayer.paused)) {
         playStation(scheduled.station);
-        updateMediaSession(scheduled.station); // <-- Añade esto
+        updateMediaSession(scheduled.station);
       }
-      updateProgramTitle(
-        scheduled.station.name,
-        scheduled.endTime,
-        scheduled.programName,
-        true // Mostrar nombre del programa
-      );
-      // Ejemplo en modo automático:
-      updateMediaSession(scheduled.station, scheduled.programName);
+      updateProgramTitle(scheduled.station.name, scheduled.endTime);
+      updateStationListUI(scheduled.station.url); // Asegúrate de que esto no sobrescriba el estado manual
     } else {
       radioPlayer.pause();
       radioPlayer.src = "";
       updateProgramTitle(null, null);
       updateStationListUI(null);
-      playPauseIcon.src =
-        "https://img.icons8.com/ios-filled/50/000000/play.png";
+      playPauseIcon.src = "https://img.icons8.com/ios-filled/50/000000/play.png";
       isPlaying = false;
     }
   }
-  updateNextEvent(); // Actualizar el próximo evento al verificar el horario
-  // Resetear selección manual al inicio de un nuevo programa
-  const now = new Date();
-  const currentSeconds =
-    now.getHours() * 3600 + now.getMinutes() * 60 + now.getSeconds();
-  schedule.forEach((s) => {
-    if (
-      currentSeconds === timeToSeconds(s.startTime) &&
-      now.getMilliseconds() < 100
-    ) {
-      isManualSelection = false;
-      updateModeIndicator(); // Actualizar el indicador de modo
-    }
-  });
+  updateNextEvent();
 }
 
 
@@ -1093,7 +1084,7 @@ document.getElementById("currentDayIndicator").addEventListener("keydown", (even
 
 
 
-// Detectar pérdida y reconexión de red
+// Detectar pérdida de red
 window.addEventListener("offline", () => {
   console.log("Conexión a la red perdida. Pausando reproducción.");
   radioPlayer.pause();
@@ -1101,38 +1092,15 @@ window.addEventListener("offline", () => {
   isPlaying = false;
 });
 
-
-
-
-
-
-
-
-
-
+// Detectar reconexión de red
 window.addEventListener("online", () => {
   console.log("Conexión a la red restablecida. Intentando reanudar reproducción.");
-  if (!isManualSelection) {
-    const scheduled = getScheduledStation();
-    if (scheduled) {
-      playStation(scheduled.station);
-    }
-  } else if (radioPlayer.src) {
-    radioPlayer.play().then(() => {
-      playPauseIcon.src = "https://img.icons8.com/ios-filled/50/000000/pause.png";
-      isPlaying = true;
-    });
-  }
+  tryReconnect();
 });
 
-
-
-
-
-
-
-
-
+// Manejar errores del reproductor
+radioPlayer.addEventListener("error", tryReconnect);
+radioPlayer.addEventListener("stalled", tryReconnect); // Por si el buffer se queda vacío
 
 function updateMediaSession(station, programName = "") {
   if ('mediaSession' in navigator && station) {
@@ -1188,10 +1156,6 @@ function hidePreloader() {
 
 
 
-
-
-
-
 // Control del preloader y mensaje de bloqueo
 window.addEventListener("load", () => {
   const preloader = document.getElementById("preloader");
@@ -1223,7 +1187,25 @@ window.addEventListener("load", () => {
   }
 
   // Botón OK para cerrar el preloader manualmente
-  preloaderOk.addEventListener("click", hidePreloader);
+  preloaderOk.addEventListener("click", () => {
+    if (scheduled) {
+      radioPlayer.src = scheduled.station.url;
+      radioPlayer.play().then(() => {
+        hidePreloader();
+        updateProgramTitle(scheduled.station.name, scheduled.endTime);
+        playPauseIcon.src = "https://img.icons8.com/ios-filled/50/000000/pause.png";
+        isPlaying = true;
+        updateMediaSession(scheduled.station);
+
+        // Asegúrate de que la lista de estaciones se actualice correctamente
+        setTimeout(() => {
+          updateStationListUI(scheduled.station.url); // Marcar la estación en la lista
+        }, 100); // Agrega un pequeño retraso para garantizar que la lista esté lista
+      }).catch(() => {
+        console.warn("Error al intentar reproducir la estación programada.");
+      });
+    }
+  });
 });
 
 
@@ -1277,7 +1259,6 @@ window.addEventListener("load", () => {
         isPlaying = true;
         updateMediaSession(scheduled.station);
       }).catch(() => {
-        // Si aún falla, solo oculta el preloader
         hidePreloader();
       });
     } else {
@@ -1298,7 +1279,6 @@ window.addEventListener("load", () => {
       isPlaying = true;
       updateMediaSession(scheduled.station);
     }).catch(() => {
-      // Bloqueo de reproducción automática
       preloaderMsg.textContent = "La reproducción automática ha sido bloqueada por el navegador. Por favor, haz clic en el botón Iniciar para comenzar la reproducción.";
       preloaderStart.style.display = "inline-block";
       preloaderStart.onclick = iniciarRadio;
@@ -1449,41 +1429,58 @@ function hidePreloader() {
 
 
 
+let reconnectAttempts = 0; // Contador de intentos de reconexión
+
 function tryReconnect() {
   const scheduled = getScheduledStation();
   if (!scheduled || !scheduled.station || !scheduled.station.url) return;
 
   console.warn("Desconexión detectada. Intentando reconectar...");
+
+  // Calcular el tiempo de espera entre intentos (progresivo)
+  const retryDelay = Math.min(30000, 1000 * Math.pow(2, reconnectAttempts)); // Máximo 30 segundos
+
   setTimeout(() => {
     if (radioPlayer.paused || radioPlayer.readyState < 3) {
-      console.log("Reconectando a " + scheduled.station.name);
-      radioPlayer.src = scheduled.station.url + "?t=" + Date.now(); // Forzar recarga
+      reconnectAttempts++;
+      console.log(`Intento de reconexión #${reconnectAttempts} a ${scheduled.station.name}`);
+
+      // Forzar recarga del stream
+      radioPlayer.src = scheduled.station.url + "?t=" + Date.now();
       radioPlayer.load();
-      radioPlayer.play().catch((e) => {
+
+      radioPlayer.play().then(() => {
+        console.log("Reconexión exitosa.");
+        reconnectAttempts = 0; // Reiniciar contador al reconectar
+        playPauseIcon.src = "https://img.icons8.com/ios-filled/50/000000/pause.png";
+        isPlaying = true;
+      }).catch((e) => {
         console.warn("Error al reproducir tras reconexión:", e);
+        tryReconnect(); // Intentar nuevamente
       });
     }
-  }, 1000); // Esperar 1 segundo antes de intentar reconexión
-}
-//😁👍
-//////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-const darkModeToggle = document.getElementById("darkModeToggle");
-
-// Al cargar la página, verifica si el modo oscuro está activado
-if (localStorage.getItem("darkMode") === "true") {
-  document.body.classList.add("dark-mode");
-  darkModeToggle.src = "https://img.icons8.com/windows/32/sun--v1.png"; // Ícono de sol
+  }, retryDelay);
 }
 
-// Alternar el modo oscuro y guardar el estado
-darkModeToggle.addEventListener("click", () => {
-  document.body.classList.toggle("dark-mode");
-  const isDarkMode = document.body.classList.contains("dark-mode");
-  localStorage.setItem("darkMode", isDarkMode); // Guardar el estado en localStorage
+// Actualizar el estado del reproductor
+const playerStatus = document.getElementById("playerStatus");
 
-  // Cambiar el ícono según el estado
-  darkModeToggle.src = isDarkMode
-    ? "https://img.icons8.com/windows/32/sun--v1.png" // Ícono de sol
-    : "https://img.icons8.com/ios-filled/50/do-not-disturb-2.png"; // Ícono original
+// Mostrar "Conectando..." cuando se inicia la reproducción
+radioPlayer.addEventListener("loadstart", () => {
+  playerStatus.textContent = "Conectando";
+});
+
+// Limpiar el estado cuando la reproducción comienza
+radioPlayer.addEventListener("playing", () => {
+  playerStatus.textContent = "";
+});
+
+// Manejar errores
+radioPlayer.addEventListener("error", () => {
+  playerStatus.textContent = "Error al conectar";
+});
+
+// Limpiar el estado cuando se pausa
+radioPlayer.addEventListener("pause", () => {
+  playerStatus.textContent = "";
 });
