@@ -8,27 +8,6 @@ body {
   background-color: #f0f0f0;
 }
 
-body.dark-mode {
-  background-color: #121212; /* Fondo oscuro */
-  color: #ffffff; /* Texto claro */
-}
-
-body.dark-mode a {
-  color: #bb86fc; /* Color de enlace en modo oscuro */
-}
-
-body.dark-mode a:hover {
-  color: #d18fff; /* Color más claro al pasar el cursor */
-}
-
-body.dark-mode #currentDayIndicator {
-  color: #ffffff;
-}
-
-body.dark-mode img {
-  filter: invert(1);
-}
-
 
 
 
@@ -41,12 +20,6 @@ body.dark-mode img {
   max-width: 400px;
   width: 100%;
   position: relative; /* Para posicionar el endTime */
-}
-
-body.dark-mode .container {
-  background-color: #1e1e1e; /* Fondo oscuro del contenedor */
-  color: #ffffff; /* Texto claro */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); /* Sombra más tenue */
 }
 
 
@@ -95,24 +68,26 @@ body.dark-mode .container {
   transition: background-color 0.3s;
 }
 
-body.dark-mode #stationList {
-  background-color: #1e1e1e; /* Fondo oscuro */
-  color: #ffffff; /* Texto claro */
-  border: 1px solid #333; /* Borde oscuro */
-  padding: 10px;
-  border-radius: 5px;
+
+
+
+#stationList li:hover {
+  background-color: #d0d0d0;
 }
 
-/* Elementos de las listas */
-body.dark-mode #programList li,
-body.dark-mode #stationList li {
-  background-color: #2a2a2a; /* Fondo más oscuro */
-  color: #ffffff; /* Texto claro */
-  border: 1px solid #444; /* Borde tenue */
+
+
+
+#stationList li.active {
+  background-color: #60B5FF;
+  color: white;
 }
 
-body.dark-mode #stationList li:hover {
-  background-color: #333; /* Fondo más claro al pasar el cursor */
+
+
+
+audio {
+  display: none; /* Ocultar el reproductor nativo */
 }
 
 
@@ -131,11 +106,6 @@ h1 {
   font-size: 1.5em;
   color: #222;
   margin: 0 0 10px 0;
-}
-
-body.dark-mode h1,
-body.dark-mode h2 {
-  color: #ffffff; /* Texto claro */
 }
 
 
@@ -159,17 +129,6 @@ body.dark-mode h2 {
   text-align: center;
 }
 
-body.dark-mode #nextEvent {
-  background-color: #1e1e1e; /* Fondo oscuro */
-  color: #ffffff; /* Texto claro */
-}
-
-/* Títulos */
-body.dark-mode h1,
-body.dark-mode h2 {
-  color: #ffffff; /* Texto claro */
-}
-
 
 
 
@@ -183,7 +142,7 @@ body.dark-mode h2 {
 
 #modeIndicator {
   position: absolute;
-  top: 12px;
+  top: 10px;
   right: 10px;
   font-size: 0.7em;
   color: #000000;
@@ -191,12 +150,6 @@ body.dark-mode h2 {
   padding: 5px 10px;
   border-radius: 5px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-body.dark-mode #modeIndicator {
-  background-color: #333; /* Fondo oscuro */
-  color: #ffffff; /* Texto claro */
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5); /* Sombra tenue */
 }
 
 
@@ -213,14 +166,14 @@ body.dark-mode #modeIndicator {
   transition: background-color 0.3s;
 }
 
-body.dark-mode #scrollToTopButton {
-  background-color: #333; /* Fondo oscuro */
-  color: #ffffff; /* Texto claro */
+
+
+
+
+#scrollToTopButton:hover {
+  background-color: #1c30e4;
 }
 
-body.dark-mode #scrollToTopButton:hover {
-  background-color: #444; /* Fondo más claro al pasar el cursor */
-}
 
 
 
@@ -237,6 +190,7 @@ body.dark-mode #scrollToTopButton:hover {
 
 
 
+
 #scrollToStationsButton img,
 #playPauseButton img,
 #shuffleButton img {
@@ -245,6 +199,7 @@ body.dark-mode #scrollToTopButton:hover {
   cursor: pointer;
   transition: transform 0.2s;
 }
+
 
 
 
@@ -258,6 +213,7 @@ body.dark-mode #scrollToTopButton:hover {
 
 
 
+
 #scheduleContainer {
   margin-top: 20px;
   text-align: center;
@@ -265,12 +221,6 @@ body.dark-mode #scrollToTopButton:hover {
   padding: 15px;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-body.dark-mode #scheduleContainer {
-  background-color: #1e1e1e; /* Fondo oscuro */
-  color: #ffffff; /* Texto claro */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); /* Sombra más tenue */
 }
 
 
@@ -282,9 +232,6 @@ body.dark-mode #scheduleContainer {
   margin-bottom: 10px;
 }
 
-body.dark-mode #scheduleTitle {
-  color: #ffffff; /* Texto claro */
-}
 
 
 
@@ -294,6 +241,7 @@ body.dark-mode #scheduleTitle {
   padding: 0;
   margin: 0;
 }
+
 
 
 
@@ -309,26 +257,6 @@ body.dark-mode #scheduleTitle {
   transition: background-color 0.3s ease; /* Transición suave al pasar el cursor */
 }
 
-body.dark-mode #programList {
-  background-color: #1e1e1e; /* Fondo oscuro */
-  color: #ffffff; /* Texto claro */
-  border: 1px solid #333; /* Borde oscuro */
-  padding: 10px;
-  border-radius: 5px;
-}
-
-/* Elementos de las listas */
-body.dark-mode #programList li,
-body.dark-mode #stationList li {
-  background-color: #2a2a2a; /* Fondo más oscuro */
-  color: #ffffff; /* Texto claro */
-  border: 1px solid #444; /* Borde tenue */
-}
-
-body.dark-mode #programList li:hover,
-body.dark-mode #stationList li:hover {
-  background-color: #333; /* Fondo más claro al pasar el cursor */
-}
 
 
 
@@ -358,6 +286,7 @@ body.dark-mode #stationList li:hover {
 
 
 
+
 .program-time {
   text-align: right;
   color: #555;
@@ -366,6 +295,7 @@ body.dark-mode #stationList li:hover {
   flex-shrink: 0; /* Evitar que la hora se reduzca demasiado */
   align-self: center; /* Asegurar que la hora esté centrada verticalmente */
 }
+
 
 
 
@@ -381,9 +311,10 @@ body.dark-mode #stationList li:hover {
 
 
 
+
 #currentDayIndicator {
   position: absolute;
-  top: 12px;
+  top: 10px;
   left: 5px;
   font-size: 0.6em; /* Aumentar el tamaño del texto */
   color: #000000; /* Cambiar el color del texto a blanco */
@@ -397,12 +328,6 @@ body.dark-mode #stationList li:hover {
   transition: background-color 0.3s ease, transform 0.2s ease; /* Transiciones suaves */
 }
 
-body.dark-mode #currentDayIndicator {
-  background-color: #333; /* Fondo oscuro */
-  color: #ffffff; /* Texto claro */
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5); /* Sombra tenue */
-}
-
 
 
 
@@ -411,6 +336,7 @@ body.dark-mode #currentDayIndicator {
   background-color: #fafafa; /* Cambiar el color de fondo al pasar el mouse */
   transform: scale(1.05); /* Efecto de zoom al pasar el mouse */
 }
+
 
 
 
@@ -427,11 +353,6 @@ body.dark-mode #currentDayIndicator {
   padding: 15px;
   font-size: 14px;
   color: #333; /* Color del texto */
-}
-
-body.dark-mode #footerText {
-  background-color: #1e1e1e; /* Fondo oscuro */
-  color: #ffffff; /* Texto claro */
 }
 
 
@@ -454,13 +375,50 @@ body.dark-mode #footerText {
   100% { transform: rotate(360deg); }
 }
 
-#darkModeToggle {
-  width: 15px; /* Ajusta el ancho del ícono */
-  height: 15px; /* Ajusta la altura del ícono */
-  cursor: pointer;
-  transition: transform 0.2s ease; /* Efecto suave al pasar el cursor */
+#playerStatus {
+  color: red;
+  font-size: 1rem;
+  margin-top: 5px;
 }
 
-#darkModeToggle:hover {
-  transform: scale(1.1); /* Efecto de zoom al pasar el cursor */
+/* Contenedor de las olas */
+#waveLoader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+}
+
+/* Estilo de los puntos */
+.dot {
+  width: 10px;
+  height: 10px;
+  margin: 0 5px;
+  background-color: rgb(0, 255, 145); /* Color de los puntos */
+  border-radius: 50%;
+  animation: wave 1.5s infinite ease-in-out;
+}
+
+/* Animación de las olas */
+.dot:nth-child(1) {
+  animation-delay: 0s;
+}
+
+.dot:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.dot:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+@keyframes wave {
+  0%, 80%, 100% {
+    transform: scale(0); /* Tamaño mínimo */
+    opacity: 0.3; /* Transparencia */
+  }
+  40% {
+    transform: scale(1); /* Tamaño máximo */
+    opacity: 1; /* Totalmente visible */
+  }
 }
