@@ -58,17 +58,13 @@
       </button>
     </div>
     <div class="container">
-      <div id="currentDayContainer">
-        <div id="currentDayIndicator" role="button" tabindex="0">Lunes</div>
-        <img
-          id="darkModeToggle"
-          src="https://img.icons8.com/ios-filled/50/do-not-disturb-2.png"
-          alt="Modo Oscuro"
-          title="Modo Oscuro"
-          style="cursor: pointer;"
-        />
+      <h1 id="programTitle">Título del programa</h1>
+      <div id="waveLoader">
+        <span class="dot"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
       </div>
-      <h1 id="programTitle"></h1>
+      <span id="playerStatus" style="color: red; font-size: 1rem"></span>
       <span id="endTime"></span>
       <div id="controls">
         <div id="scrollToStationsButton">
@@ -103,6 +99,8 @@
         <h2 id="scheduleTitle">En Curso</h2>
         <ul id="programList"></ul>
       </div>
+      <div id="currentDayIndicator" role="button" tabindex="0">Lunes</div>
+
       <div id="modeIndicator">Modo: Automático</div>
       <h2>Estaciones Disponibles</h2>
       <ul id="stationList"></ul>
@@ -129,3 +127,4 @@
     </script>
   </body>
 </html>
+
