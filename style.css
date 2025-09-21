@@ -1,0 +1,761 @@
+body {
+  font-family: Arial, sans-serif;
+  display: flex;
+  flex-direction: column;
+  min-height: vh;
+  min-height: 100vh;
+  margin: 0;
+  background-color: #f0f0f0;
+}
+/* Contenedor principal que empuja el footer hacia abajo */
+.page-content {
+  flex: 1; /* Ocupa el espacio disponible */
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Header Moderno */
+.modern-header {
+  width: 100%;
+  height: 70px;
+  background-color: #007bff;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  
+}
+  .container-header {
+    padding: 15px;
+  }
+.container-content{
+  text-align: center;
+  font-size: 1.5rem;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+.header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.header-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.radio-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 12px;
+  color: white;
+  transition: all 0.3s ease;
+}
+
+.radio-icon:hover {
+  background: rgba(255, 255, 255, 0.25);
+  transform: scale(1.05);
+}
+
+.radio-icon svg {
+  width: 24px;
+  height: 24px;
+}
+
+.header-title {
+  color: white;
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin: 0;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  letter-spacing: -0.5px;
+}
+
+.header-status {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 8px 16px;
+  border-radius: 20px;
+  backdrop-filter: blur(5px);
+}
+
+.status-indicator {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #ffc107;
+  animation: pulse 2s infinite;
+}
+
+.status-indicator.online {
+  background: #00f539;
+}
+
+.status-indicator.offline {
+  background: #ff4444;
+}
+
+.status-text {
+  color: white;
+  font-size: 0.9rem;
+  font-weight: 500;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+@keyframes pulse {
+  0% { opacity: 1; }
+  50% { opacity: 0.5; }
+  100% { opacity: 1; }
+}
+/* posicion*/
+#preloader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.85);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+/*Logo*/
+#preloaderSpinner {
+  width: 60px;
+  height: 60px;
+}
+/*Texto*/
+#preloaderMsg {
+  color: #fff;
+  margin-top: 20px;
+  font-size: 1.2rem;
+}
+/*Boton*/
+#preloaderStart {
+  display: none;
+  margin-top: 30px;
+  padding: 12px 32px;
+  font-size: 1rem;
+  border: none;
+  border-radius: 8px;
+  background: #fff;
+  color: #222;
+  cursor: pointer;
+}
+
+
+
+.container {
+  text-align: center;
+  background-color: white;
+  padding: 5px;
+  border-radius: 15px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  max-width: 370px;
+  width: 100%;
+  position: relative;
+  margin-top: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+
+.logo-container {
+  position: relative;
+  display: none; /* Oculto por defecto hasta que se cargue una estación */
+  max-width: 255px;
+  margin: 10px auto 15px;
+}
+
+.logo-estacion {
+  max-width: 118px; /* Tamaño máximo del logo */
+  height: auto;
+  border-radius: 10%; /* Hace que la imagen sea circular */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); /* Sombra suave */
+  border: 3px solid rgb(2, 130, 234); /* Borde blanco opcional */
+  display: block;
+  margin-left: 26%;
+  margin-top: 8%;
+}
+
+#playPauseButton {
+  position: absolute;
+  top:47.5%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  cursor: pointer;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 50%;
+  padding: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
+}
+
+#playPauseButton:hover {
+  background: rgba(255, 255, 255, 1);
+  transform: translate(-50%, -50%) scale(1.1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+#playPauseButton img {
+  width: 25px;
+  height: 25px;
+  display: block;
+}
+
+
+
+#programTitle {
+  margin-top: 20px; /* Espacio entre el modo y el título */;
+  font-size: 0.1em;
+  text-align: center; /* Centrar el título */
+}
+#programName {
+  margin-top: 5px;
+  font-size: 0.94em;
+  text-align: center; /* Centrar el nombre del programa */
+}
+
+
+#nextEvent {
+  margin-top: 10px;
+  font-size: 0.9em;
+  color: black; /* Cambiar el color del texto a negro */
+  text-align: center;
+}
+
+
+
+
+#nextEventDetails {
+  font-size: 0.9em;
+  color: #555; /* Color más claro para los detalles */
+}
+
+
+
+
+
+
+
+
+
+/* Botón del menú hamburguesa */
+.menu-button {
+  position: absolute;
+  top: 16px;
+  right: 15px;
+  width: 21px;
+  height: 16px;
+  cursor: pointer;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.menu-button span {
+  display: block;
+  width: 98%;
+  height: 3px;
+  background-color: #333;
+  border-radius: 3px;
+  transition: all 0.3s ease;
+}
+
+.menu-button:hover span {
+  background-color: #007bff;
+}
+
+/* Menú deslizante */
+.side-menu {
+  position: fixed;
+  top: 0;
+  right: -300px;
+  width: 300px;
+  height: 100vh;
+ background-color: #007bff;
+  box-shadow: -2px 0 10px rgba(0, 0, 0, 0.3);
+  transition: right 0.3s ease;
+  z-index: 2000;
+  overflow-y: auto;
+}
+
+.side-menu.open {
+  right: 0;
+}
+
+.menu-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.1);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.menu-header h3 {
+  color: white;
+  margin: 0;
+  font-size: 1.2em;
+}
+
+.close-menu {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 24px;
+  cursor: pointer;
+  padding: 0;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: background-color 0.3s ease;
+}
+
+.close-menu:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.menu-content {
+  padding: 20px;
+}
+
+.stations-list {
+  margin-bottom: 20px;
+}
+
+.station-item {
+  display: flex;
+  align-items: center;
+  padding: 15px;
+  margin-bottom: 10px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  color: white;
+}
+
+.station-item:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: translateX(-5px);
+}
+
+.station-logo {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  margin-right: 15px;
+  object-fit: cover;
+}
+
+.station-info {
+  flex: 1;
+}
+
+#stationName {
+  font-weight: bold;
+  margin-bottom: -7px;
+
+  font-size: 0.94em;
+}
+
+.station-description {
+  font-size: 0.8em;
+  opacity: 0.8;
+}
+
+
+
+/* Overlay para cerrar el menú */
+.menu-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 1500;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+}
+
+.menu-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Menú del día */
+.day-menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  transform: translateX(-100%); /* Inicia fuera de la pantalla con transform */
+  width: 100vw; /* Ocupa el 90% del ancho en móviles */
+  max-width: 450px; /* Pero no más de 450px en pantallas grandes */
+  height: 100vh;
+ background-color: #007bff;
+  z-index: 3000;
+  transition: transform 0.35s ease-in-out; /* Transición con transform */
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.day-menu.open {
+  transform: translateX(0); /* Se desliza a la vista */
+}
+
+.day-menu-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 20px;
+  background: rgba(255, 255, 255, 0.1);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.day-menu-header h3 {
+  color: white;
+  margin: 0;
+  font-size: 1.3rem;
+  font-weight: bold;
+}
+
+.close-day-menu {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 24px;
+  cursor: pointer;
+  padding: 0;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: background-color 0.3s ease;
+}
+
+.close-day-menu:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.day-menu-content {
+  padding: 10px 10px 20px;
+  flex-grow: 1; /* Ocupa el espacio restante */
+  overflow-y: auto; /* Permite scroll si el contenido es largo */
+}
+
+.day-schedule-list {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.day-schedule-item {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  transition: all 0.3s ease;
+  border-left: 4px solid transparent;
+  gap: 1px;;
+}
+
+.day-schedule-item:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: translateX(5px);
+}
+
+.day-schedule-item.current {
+  border-left-color: #00f539;
+  background: rgba(0, 245, 57, 0.1);
+}
+
+.day-schedule-item.past {
+  opacity: 0.6;
+}
+
+.day-schedule-time {
+  min-width: 80px;
+  text-align: justify;
+  color: white;
+  font-weight: bold;
+  font-size: 0.9rem;
+  margin-right: -20px;
+  
+}
+
+.day-schedule-logo {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-right: 10px;
+  margin-left: px;
+  object-fit: cover;
+}
+
+.day-schedule-info {
+  flex: 1;
+}
+
+.day-schedule-station {
+  color: white;
+  font-size: 0.9rem;
+  margin-bottom: 0.125rem; /* 2px */
+}
+
+.day-schedule-program {
+  color: white;
+  font-size: 0.9rem;
+}
+
+.day-schedule-status {
+  margin-left: 10px;
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-size: 0.7rem;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.day-schedule-status.current {
+  background: #00f539;
+  color: #000;
+}
+
+.day-schedule-status.upcoming {
+  background: #ffc107;
+  color: #000;
+}
+
+.day-schedule-status.past {
+  background: #6c757d;
+  color: white;
+}
+
+/* Overlay para el menú del día */
+.day-menu-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.7);
+  z-index: 2500;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+}
+
+.day-menu-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+
+
+
+
+
+#controls {
+  display: flex;
+  justify-content: center; /* Centra horizontalmente */
+  align-items: center;
+  width: 100%; /* O el ancho que prefieras */
+  margin: 0 auto;
+  margin-top: 20px;
+}
+
+#programProgressBarContainer {
+  flex-grow: 1; /* Hace que la barra ocupe el espacio restante */
+  height: 8px;
+  background-color: #e0e0e0;
+  border-radius: 4px;
+  overflow: hidden; /* Asegura que la barra interior respete el radio del borde */
+}
+
+#programProgressBar {
+  height: 100%;
+  width: 0%; /* Ancho inicial, actualizado por JS */
+  background-color: #007bff; /* Color de la barra de progreso */
+  border-radius: 4px;
+  transition: width 0.5s linear; /* Transición suave para las actualizaciones */
+}
+
+#currentDayIndicator {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  width: 40px;
+  height: 40px;
+  
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+#currentDayIndicator:hover {
+  transform: scale(1.1);
+
+}
+
+#currentDayIndicator:active {
+  transform: scale(1);
+ 
+}
+
+
+
+
+#footerText {
+  text-align: center;
+  padding: 15px;
+  font-size: 14px;
+  color: #333; /* Color del texto */
+}
+
+/* Estilo para el footer */
+footer {
+    background-color: #333; /* Fondo oscuro */
+    color: white; /* Texto blanco para contraste */
+    text-align: center; /* Centrar el texto */
+    padding: 10px 0; /* Espaciado interno */
+    width: 100%;
+}
+
+#preloaderSpinner {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  100% { transform: rotate(360deg); }
+}
+
+.blink-red {
+  color: #d32f2f !important;
+  animation: blink-red 1s steps(2, start) infinite;
+}
+
+@keyframes blink-red {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.2; }
+}
+
+/* Media Query para adaptar el panel de programación en pantallas pequeñas */
+@media (max-width: 420px) {
+  .day-schedule-item {
+    padding: 10px;
+    gap: 1px;
+  }
+
+  .day-schedule-time {
+    min-width: 65px;
+    font-size: 0.9rem;
+  }
+
+  .day-schedule-logo {
+    width: 35px;
+    height: 35px;
+  }
+
+  .day-schedule-station {
+    font-size: 0.9rem;
+  }
+
+  .day-schedule-program {
+    font-size: 0.9rem;
+  }
+  .day-schedule-status{
+font-size: 0.9rem;
+  }
+  }
+.online{
+  color: #00f539;
+  font-family: Arial, sans-serif;
+  font-weight: bold;
+  margin-top: 1%;
+}
+.offline{
+  color: red;
+  font-family: Arial, sans-serif;
+  font-weight: bold;
+  margin-top: 3px;
+}
+@media (max-width: 300px){
+  .logo-estacion{
+    margin-left: 8%;
+  }
+}
+
+/* Responsive para el header */
+@media (max-width: 768px) {
+  .modern-header {
+    height: 60px;
+    width: 100%;
+   
+  }
+  
+  .header-content {
+    padding: 0 15px;
+  }
+  
+  .header-title {
+    font-size: 1.3rem;
+  }
+  
+  .radio-icon {
+    width: 35px;
+    height: 35px;
+  }
+  
+  .radio-icon svg {
+    width: 20px;
+    height: 20px;
+  }
+  
+  .header-status {
+    padding: 6px 12px;
+  }
+  
+  .status-text {
+    font-size: 0.8rem;
+  }
+  
+
+}
+
+@media (max-width: 480px) {
+  .header-title {
+    font-size: 1.1rem;
+  }
+  
+  .header-status {
+    padding: 5px 10px;
+  }
+  
+  .status-text {
+    font-size: 0.75rem;
+  }
+}

@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Radio Online</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="shortcut icon" href="/assets/fav.png" type="image/x-icon" />
+  </head>
+  <body>
+    <header class="modern-header">
+      <div class="header-content">
+        <div class="header-brand">
+          <div class="radio-icon">
+            <svg
+              width="32"
+              height="32"
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.94-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"
+                fill="currentColor"
+              />
+            </svg>
+          </div>
+          <h1 class="header-title">Radio Online</h1>
+        </div>
+        <div class="header-status">
+          <div class="status-indicator" id="headerStatus"></div>
+          <span class="status-text" id="headerStatusText">Conectando...</span>
+        </div>
+      </div>
+    </header>
+    <div id="preloader">
+      <img
+        src="https://img.icons8.com/ios-filled/100/ffffff/loading.png"
+        alt="Cargando radio..."
+        id="preloaderSpinner"
+      />
+
+      <div id="preloaderMsg">Cargando radio...</div>
+
+      <button id="preloaderStart">Iniciar</button>
+    </div>
+
+    <main class="page-content">
+      <div class="containerleft"></div>
+      <div class="container">
+        <div id="menuButton" class="menu-button">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+
+        <div id="sideMenu" class="side-menu">
+          <div class="menu-header">
+            <h3>Estaciones</h3>
+            <button id="closeMenu" class="close-menu">×</button>
+          </div>
+          <div class="menu-content">
+            <div id="stationsList" class="stations-list"></div>
+          </div>
+        </div>
+
+        <div id="menuOverlay" class="menu-overlay"></div>
+
+        <h1 id="programTitle"></h1>
+        <div class="logo-container">
+          <div id="stationName"></div>
+
+          <img
+            id="stationLogo"
+            class="logo-estacion"
+            src=""
+            alt="Logo de la estación"
+          />
+
+          <div id="programName"></div>
+
+          <div id="connectionStatus"></div>
+          <div id="playPauseButton">
+            <img
+              id="playPauseIcon"
+              src="https://img.icons8.com/ios-filled/50/000000/play.png"
+              alt="Reproducir"
+            />
+          </div>
+        </div>
+        <div id="controls">
+          <div id="programProgressBarContainer">
+            <div id="programProgressBar"></div>
+          </div>
+        </div>
+        <div id="nextEvent">
+          <span id="nextEventTitle">Próximo evento:</span>
+          <div id="nextEventDetails"></div>
+        </div>
+        <audio id="radioPlayer"></audio>
+
+        <img
+          id="currentDayIndicator"
+          src="https://img.icons8.com/ios/50/overtime--v1.png"
+          alt="Ver programación del día"
+          role="button"
+          tabindex="0"
+          style="width: 25px; height: 25px"
+        />
+        <div id="footerText">
+          <p>
+            Al usar este servicio, aceptas los
+            <a href="terminos.html" target="_blank">términos y condiciones</a>.
+          </p>
+        </div>
+      </div>
+      <div class="container-header">
+        <h2>Versículo del Día</h2>
+      </div>
+      <div class="container-content">
+        <div id="dailyVersesWrapper"></div>
+        <script
+          async
+          defer
+          src="https://dailyverses.net/get/random.js?language=nvi"
+        ></script>
+      </div>
+    </main>
+    <!-- Menú del día -->
+    <div id="dayMenu" class="day-menu">
+      <div class="day-menu-header">
+        <h3 id="dayMenuTitle">Programación del Día</h3>
+        <button id="closeDayMenu" class="close-day-menu">×</button>
+      </div>
+      <div class="day-menu-content">
+        <div id="dayScheduleList" class="day-schedule-list"></div>
+      </div>
+    </div>
+
+    <!-- Overlay para el menú del día -->
+    <div id="dayMenuOverlay" class="day-menu-overlay"></div>
+
+    <!-- Footer indicando derechos reservados -->
+    <footer>
+      <div class="footer-content">
+        <p>&copy; 2025 </p>
+      </div>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>

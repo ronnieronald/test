@@ -1,0 +1,58 @@
+{
+  "name": "Radio App - Funcionamiento en Segundo Plano",
+  "short_name": "Radio App",
+  "description": "Aplicación de radio con MediaSession mejorado y funcionamiento en segundo plano",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#1a1a1a",
+  "theme_color": "#1a1a1a",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/assets/RadioLaUncion.jpg",
+      "sizes": "192x192",
+      "type": "image/jpeg",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/assets/RadioLaUncion.jpg",
+      "sizes": "512x512",
+      "type": "image/jpeg",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["music", "entertainment", "radio"],
+  "lang": "es",
+  "dir": "ltr",
+  "scope": "/",
+  "prefer_related_applications": false,
+  "related_applications": [],
+  "screenshots": [
+    {
+      "src": "/assets/RadioLaUncion.jpg",
+      "sizes": "1280x720",
+      "type": "image/jpeg",
+      "form_factor": "wide"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Reproducir Radio",
+      "short_name": "Play",
+      "description": "Iniciar reproducción de radio",
+      "url": "/?action=play",
+      "icons": [
+        {
+          "src": "/assets/RadioLaUncion.jpg",
+          "sizes": "96x96"
+        }
+      ]
+    }
+  ],
+  "protocol_handlers": [
+    {
+      "protocol": "web+radio",
+      "url": "/?station=%s"
+    }
+  ]
+}
