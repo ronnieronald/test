@@ -897,14 +897,6 @@ radioPlayer.addEventListener("play", () => {
   }
 });
 
-radioPlayer.addEventListener("pause", () => {
-  // Si el reproductor se pausa desde otra aplicación, marcar como pausa manual
-  if (!pausedManually) {
-    console.log("Pausa iniciada desde otra aplicación - activando pausa manual");
-    pausedManually = true;
-  }
-});
-
 // Detectar pérdida y reconexión de red
 window.addEventListener("offline", () => {
   console.log("Conexión a la red perdida.");
