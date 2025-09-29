@@ -7,7 +7,7 @@ const stationWebsites = {
   "Al Fin Radio": "https://alfinradio.blogspot.com/?m=1",
   "Radio Poder Celestial": "https://onlineradiobox.com/pe/podercelestial/",
   "Radio Bethel": "https://www.bethel.fm/",
-  "Radio La Voz Celestial": "https://www.programalavozcelestial.com/",
+  "Radio La Voz Celestial": "https://www.programalavozcelestial.com/cusco",
   "Radio Nueva Luz Live": "https://radionuevaluzcusco.com/",
   "Radio Fe Avivamiento": "https://www.radiofeavivamiento.com/?m=1"
 };
@@ -327,7 +327,7 @@ const schedule = [
     startTime: "07:00:00",
     endTime: "11:00:00",
     station: {
-      name: "Radio AL fin radio",
+      name: "Al Fin Radio",
       url: "https://stream-176.zeno.fm/e97vtkkuhchvv?zt=eyJhbGciOiJIUzI1NiJ9.eyJzdHJlYW0iOiJlOTd2dGtrdWhjaHZ2IiwiaG9zdCI6InN0cmVhbS0xNzYuemVuby5mbSIsInRtIjpmYWxzZSwicnR0bCI6NSwianRpIjoiZExza0NKQzhUakNoc2VYWDJtRy1xQSIsImlhdCI6MTc1Mzg5MjY3MCwiZXhwIjoxNzUzODkyNzMwfQ.GH1WXAOKnIqMSmBGAMp_xlLkaVLpgSHIPQQ3idEbe1Y",
       logo: "/assets/RadioPoderCelestial.jpg"
     },
@@ -422,7 +422,7 @@ const schedule = [
     startTime: "08:00:00",
     endTime: "10:20:00",
     station: {
-      name: "Radio Nueva Luz Live",
+      name: "Radio Nueva Luz",
       url: "https://conectperu.com/8338/stream",
       logo: "/assets/RadioNuevaLuz.jpg"
     },
@@ -444,7 +444,7 @@ const schedule = [
     startTime: "11:00:00",
     endTime: "13:00:00",
     station: {
-      name: "Radio Nueva Luz Live",
+      name: "Radio Nueva Luz",
       url: "https://conectperu.com/8338/stream",
       logo: "/assets/RadioNuevaLuz.jpg"
     },
@@ -522,62 +522,6 @@ function checkInternetConnection() {
   return navigator.onLine;
 }
 
-// Función mejorada para verificar conexión real (no solo navigator.onLine)
-async function checkRealConnection() {
-  try {
-    // Intentar hacer una petición a un servicio confiable
-    const response = await fetch('https://www.google.com/favicon.ico', {
-      method: 'HEAD',
-      mode: 'no-cors',
-      cache: 'no-cache'
-    });
-    return true;
-  } catch (error) {
-    console.log('Verificación de conexión real falló:', error);
-    return false;
-  }
-}
-
-// Función para verificar conexión periódicamente
-let connectionCheckInterval = null;
-
-function startConnectionMonitoring() {
-  // Verificar conexión cada 30 segundos
-  connectionCheckInterval = setInterval(async () => {
-    const isOnline = navigator.onLine;
-    const hasRealConnection = await checkRealConnection();
-    
-    // Si navigator.onLine dice que estamos online pero no hay conexión real
-    if (isOnline && !hasRealConnection) {
-      console.log('Conexión falsa detectada, pausando reproducción');
-      pauseMediaSessionOnNetworkLoss();
-      if (isPlaying && !pausedManually) {
-        radioPlayer.pause();
-        playPauseIcon.src = "https://img.icons8.com/ios-filled/50/000000/play.png";
-        isPlaying = false;
-      }
-    }
-    // Si navigator.onLine dice que estamos offline pero hay conexión real
-    else if (!isOnline && hasRealConnection) {
-      console.log('Conexión restaurada, reanudando reproducción');
-      resumeMediaSessionOnNetworkRestore();
-      const scheduled = getScheduledStation();
-      if (scheduled && !pausedManually) {
-        setTimeout(() => {
-          attemptReconnection(scheduled.station);
-        }, 1000);
-      }
-    }
-  }, 30000); // Verificar cada 30 segundos
-}
-
-function stopConnectionMonitoring() {
-  if (connectionCheckInterval) {
-    clearInterval(connectionCheckInterval);
-    connectionCheckInterval = null;
-  }
-}
-
 // Actualizar el indicador de estado de conexión
 function updateConnectionStatus() {
   const isOnline = checkInternetConnection();
@@ -603,14 +547,6 @@ function updateConnectionStatus() {
       headerStatus.className = "status-indicator offline";
       headerStatusText.textContent = "Sin conexión";
     }
-  }
-  
-  // Notificar al Service Worker sobre el cambio de estado de red
-  if ('serviceWorker' in navigator && navigator.serviceWorker.controller) {
-    navigator.serviceWorker.controller.postMessage({
-      type: 'NETWORK_STATUS',
-      isOnline: isOnline
-    });
   }
 }
 
@@ -755,10 +691,6 @@ function attemptReconnection(station) {
   }
 }
 
-// Variables para control de MediaSession
-let mediaSessionPausedByNetwork = false;
-let lastStationBeforeDisconnect = null;
-
 // Actualizar la sesión de medios
 function updateMediaSession(station, programName = "") {
   if ('mediaSession' in navigator && station) {
@@ -771,14 +703,9 @@ function updateMediaSession(station, programName = "") {
       ]
     });
 
-    // Guardar la estación actual para reconexión
-    lastStationBeforeDisconnect = { station, programName };
-
     navigator.mediaSession.setActionHandler('pause', () => {
       // Pausar la reproducción
       radioPlayer.pause();
-      pausedManually = true;
-      mediaSessionPausedByNetwork = false;
       console.log("Reproducción pausada desde MediaSession.");
     });
 
@@ -786,8 +713,6 @@ function updateMediaSession(station, programName = "") {
       // Reanudar la reproducción y actualizar los metadatos
       const scheduled = getScheduledStation();
       if (scheduled) {
-        pausedManually = false;
-        mediaSessionPausedByNetwork = false;
         radioPlayer.src = scheduled.station.url; // Asegurar que la URL esté configurada
         radioPlayer.play().then(() => {
           console.log("Reproducción reanudada desde MediaSession.");
@@ -797,40 +722,6 @@ function updateMediaSession(station, programName = "") {
         });
       }
     });
-
-    // Actualizar el estado de reproducción en MediaSession
-    navigator.mediaSession.playbackState = isPlaying ? 'playing' : 'paused';
-    
-    // Notificar al Service Worker sobre la actualización de MediaSession
-    if ('serviceWorker' in navigator && navigator.serviceWorker.controller) {
-      navigator.serviceWorker.controller.postMessage({
-        type: 'MEDIA_SESSION_UPDATE',
-        station: station.name,
-        program: programName,
-        isPlaying: isPlaying
-      });
-    }
-  }
-}
-
-// Función para pausar MediaSession cuando se pierde la conexión
-function pauseMediaSessionOnNetworkLoss() {
-  if ('mediaSession' in navigator && isPlaying && !pausedManually) {
-    mediaSessionPausedByNetwork = true;
-    navigator.mediaSession.playbackState = 'paused';
-    console.log("MediaSession pausado debido a pérdida de conexión");
-  }
-}
-
-// Función para reanudar MediaSession cuando se restaura la conexión
-function resumeMediaSessionOnNetworkRestore() {
-  if ('mediaSession' in navigator && mediaSessionPausedByNetwork && !pausedManually) {
-    const scheduled = getScheduledStation();
-    if (scheduled) {
-      navigator.mediaSession.playbackState = 'playing';
-      updateMediaSession(scheduled.station, scheduled.programName);
-      console.log("MediaSession reanudado debido a restauración de conexión");
-    }
   }
 }
 
@@ -1018,24 +909,11 @@ radioPlayer.addEventListener("pause", () => {
 window.addEventListener("offline", () => {
   console.log("Conexión a la red perdida.");
   updateConnectionStatus();
-  
-  // Pausar MediaSession inmediatamente cuando se pierde la conexión
-  pauseMediaSessionOnNetworkLoss();
-  
-  // Pausar el reproductor si está reproduciendo
-  if (isPlaying && !pausedManually) {
-    radioPlayer.pause();
-    playPauseIcon.src = "https://img.icons8.com/ios-filled/50/000000/play.png";
-    isPlaying = false;
-  }
 });
 
 window.addEventListener("online", () => {
   console.log("Conexión a la red restaurada.");
   updateConnectionStatus();
-  
-  // Reanudar MediaSession cuando se restaura la conexión
-  resumeMediaSessionOnNetworkRestore();
   
   // Intentar reconectar automáticamente cuando se restaura la conexión
   // con un pequeño delay para asegurar que la conexión esté estable
@@ -1083,45 +961,19 @@ function hidePreloader() {
   if (preloader) preloader.style.display = "none";
 }
 
-// Registrar Service Worker para funcionamiento en segundo plano
-if ('serviceWorker' in navigator) {
-  window.addEventListener('load', () => {
-    navigator.serviceWorker.register('/sw.js')
-      .then((registration) => {
-        console.log('Service Worker registrado exitosamente:', registration.scope);
-        
-        // Escuchar mensajes del Service Worker
-        navigator.serviceWorker.addEventListener('message', (event) => {
-          if (event.data.type === 'NETWORK_STATUS_UPDATE') {
-            console.log('Estado de red actualizado desde Service Worker:', event.data.isOnline);
-            updateConnectionStatus();
-          }
-          
-          if (event.data.type === 'NOTIFICATION_ACTION') {
-            if (event.data.action === 'play') {
-              // Reproducir desde notificación
-              const scheduled = getScheduledStation();
-              if (scheduled && !pausedManually) {
-                playStation(scheduled.station);
-              }
-            } else if (event.data.action === 'pause') {
-              // Pausar desde notificación
-              radioPlayer.pause();
-              pausedManually = true;
-              playPauseIcon.src = "https://img.icons8.com/ios-filled/50/000000/play.png";
-              isPlaying = false;
-            }
-          }
-        });
-      })
-      .catch((error) => {
-        console.log('Error al registrar Service Worker:', error);
-      });
-  });
-}
-
 // Inicialización
 window.addEventListener("load", () => {
+  // Registrar el Service Worker para mantener la app activa en segundo plano
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('/sw.js')
+      .then(registration => {
+        console.log('Service Worker registrado con éxito:', registration);
+      })
+      .catch(error => {
+        console.log('Error al registrar el Service Worker:', error);
+      });
+  }
+
   const preloader = document.getElementById("preloader");
   const preloaderMsg = document.getElementById("preloaderMsg");
   const preloaderStart = document.getElementById("preloaderStart");
@@ -1130,9 +982,6 @@ window.addEventListener("load", () => {
   updateCurrentDayIndicator();
   updateConnectionStatus(); // Inicializar el estado de conexión
   checkSchedule();
-  
-  // Iniciar monitoreo de conexión mejorado
-  startConnectionMonitoring();
 
   // Mostrar información de la estación y programa en el preloader
   if (scheduled) {
@@ -1390,68 +1239,5 @@ document.addEventListener('keydown', (event) => {
     } else if (sideMenu.classList.contains('open')) {
       closeMenuFunc();
     }
-  }
-});
-
-// Detectar cambios en el estado de la red
-const statusText = document.getElementById('headerStatusText');
-const statusIndicator = document.getElementById('headerStatus');
-
-function updateNetworkStatus() {
-    if (navigator.onLine) {
-        // Red online: reanudar reproducción
-        statusText.textContent = 'Conectado';
-        statusIndicator.classList.remove('offline');
-        statusIndicator.classList.add('online');
-        
-        // Reanudar MediaSession si fue pausado por pérdida de red
-        resumeMediaSessionOnNetworkRestore();
-        
-        if (radioPlayer.paused && !pausedManually) {
-            // Forzar nueva solicitud para evitar caché
-            const currentSrc = radioPlayer.src;
-            if (currentSrc) {
-                radioPlayer.src = `${currentSrc}?nocache=${Date.now()}`;
-                radioPlayer.play().catch(err => console.error('Error al reanudar:', err));
-            }
-        }
-    } else {
-        // Red offline: pausar reproducción
-        statusText.textContent = 'Desconectado';
-        statusIndicator.classList.remove('online');
-        statusIndicator.classList.add('offline');
-        
-        // Pausar MediaSession inmediatamente
-        pauseMediaSessionOnNetworkLoss();
-        
-        if (isPlaying && !pausedManually) {
-            radioPlayer.pause();
-            playPauseIcon.src = "https://img.icons8.com/ios-filled/50/000000/play.png";
-            isPlaying = false;
-        }
-    }
-}
-
-// Escuchar eventos de red
-window.addEventListener('online', updateNetworkStatus);
-window.addEventListener('offline', updateNetworkStatus);
-
-// Verificar el estado inicial de la red
-updateNetworkStatus();
-
-// Limpiar recursos cuando la página se cierre
-window.addEventListener('beforeunload', () => {
-  stopConnectionMonitoring();
-});
-
-// Limpiar recursos cuando la página se oculte
-document.addEventListener('visibilitychange', () => {
-  if (document.hidden) {
-    // Página oculta - mantener monitoreo activo para funcionamiento en segundo plano
-    console.log('Página oculta, manteniendo monitoreo de conexión activo');
-  } else {
-    // Página visible - verificar estado actual
-    console.log('Página visible, verificando estado de conexión');
-    updateConnectionStatus();
   }
 });
