@@ -909,6 +909,11 @@ radioPlayer.addEventListener("pause", () => {
 window.addEventListener("offline", () => {
   console.log("Conexión a la red perdida.");
   updateConnectionStatus();
+  // Pausamos el reproductor explícitamente pero sin marcarlo como pausa manual
+  // para que pueda reanudarse automáticamente al volver la conexión.
+  radioPlayer.pause();
+  playPauseIcon.src = "https://img.icons8.com/ios-filled/50/000000/play.png";
+  isPlaying = false;
 });
 
 window.addEventListener("online", () => {
